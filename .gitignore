@@ -1,0 +1,13 @@
+/node_modules/
+/.git/
+/**/Thumbs.db
+/**/*.DS_Store
+*.json
+*.JSON
+/app/img/*.avi
+/app/img/*.mov
+/app/img/*.mp4
+/app/app/*.*
+/app/libs/
+/app/sass/
+/app/img/_src/
