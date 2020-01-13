@@ -63,13 +63,17 @@ gulp.task('styles', function() {
 
 gulp.task('scripts', function() {
     return gulp.src([
-            'app/libs/modernizr-custom.js',
+            'app/libs/modernizr/modernizr.js',
             'app/libs/jquery/dist/jquery.min.js',
-            'app/libs/intlTelInput/intlTelInput-jquery.min.js',
-            'app/libs/lazysizes.min.js',
             'node_modules/bootstrap/dist/js/bootstrap.min.js',
-            'app/libs/magnific-popup/jquery.magnific-popup.min.js',
-            'app/libs/jquery.waypoints.min.js',
+            'app/libs/lazysizes.min.js',
+            'app/libs/intlTelInput/intlTelInput-jquery.min.js',
+            'app/libs/fancybox/jquery.fancybox.min.js',
+            'app/libs/mscroll/jquery.mCustomScrollbar.concat.min.js',
+            'app/libs/jquery.waterwheelCarousel.min.js',
+            //'app/libs/scroll2id/PageScroll2id.min.js',
+            //'app/libs/magnific-popup/jquery.magnific-popup.min.js',
+            //'app/libs/jquery.waypoints.min.js',
             //'app/libs/jquery.scroolly.min.js',
             //'app/js/common.js', // Always at the end
         ])

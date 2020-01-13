@@ -1,3 +1,39 @@
+/* ------------------- Loader + img init & prebuild ----------------------- */
+
+$(window).on('load', function() {
+    var t = 150,
+        iswebp = $('html').hasClass('webp'),
+        prefix = '';
+
+
+
+    if (!iswebp) {
+        //alert(prefix);
+        var data_key, data_val;
+        $('picture source, picture img, [data-bgurl]').each(function() {
+            data_key = Object.keys($(this).data())[0];
+            data_val = $(this).attr('data-' + data_key);
+            if ($(this).attr('data-bgurl')) {
+                if (!iswebp) {
+                    data_val = data_val.replace('.webp', '.jpg');
+                }
+            }
+            $(this).attr('data-' + data_key, data_val);
+        });
+    }
+
+    $('img').addClass('lazyload');
+
+    $('[data-bgurl]').each(function() {
+        $(this).css('background-image', 'url("' + $(this).attr('data-bgurl') + '")');
+    });
+
+    window.setTimeout(function() {
+        $('body').addClass('load');
+    }, t);
+
+});
+
 /* ------------------- cookies ------------------- */
 function getCookie(c_name) {
     var i, x, y, ARRcookies = document.cookie.split(";");
