@@ -141,7 +141,6 @@ $(document).ready(function() {
             protect: true,
             buttons: [
                 'zoom',
-                'thumbs',
                 'close'
             ]
         })
