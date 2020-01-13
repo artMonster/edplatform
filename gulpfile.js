@@ -71,11 +71,7 @@ gulp.task('scripts', function() {
             'app/libs/fancybox/jquery.fancybox.min.js',
             'app/libs/mscroll/jquery.mCustomScrollbar.concat.min.js',
             'app/libs/jquery.waterwheelCarousel.min.js',
-            //'app/libs/scroll2id/PageScroll2id.min.js',
-            //'app/libs/magnific-popup/jquery.magnific-popup.min.js',
-            //'app/libs/jquery.waypoints.min.js',
-            //'app/libs/jquery.scroolly.min.js',
-            //'app/js/common.js', // Always at the end
+            //'app/js/common.js',
         ])
         .pipe(concat('scripts.min.js'))
         .pipe(uglify()) // Mifify js (opt.)
@@ -113,11 +109,11 @@ gulp.task('watch', function() {
     gulp.watch(['libs/**/*.js', 'app/js/common.js'], gulp.parallel('scripts'));
     gulp.watch('app/*.*', gulp.parallel('code'));
     //gulp.watch('app/*.*', gulp.parallel('buildhtmlwatch'));
-    gulp.watch('app/img/src/**/*', gulp.parallel('webpImages'));
+    //gulp.watch('app/img/src/**/*', gulp.parallel('webpImages'));
 });
 
 
 
 gulp.task('clearcache', function() { return cache.clearAll(); });
 
-gulp.task('default', gulp.parallel('webpImages', 'styles', 'scripts', 'browser-sync', 'watch'));
+gulp.task('default', gulp.parallel('styles', 'scripts', 'browser-sync', 'watch'));
