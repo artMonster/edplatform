@@ -4,9 +4,7 @@
 /**/*.DS_Store
 *.json
 *.JSON
-/app/img/*.avi
-/app/img/*.mov
-/app/img/*.mp4
+/app/img/video/*.*
 /app/app/*.*
 /app/libs/
 /app/sass/
