@@ -11,10 +11,8 @@ $(window).on('load', function() {
         scrollbarPosition: "outside"
     });
 
-    var iswebp = $('html').hasClass('webp');
+    var iswebp = Modernizr.webp;
     var prefix = '';
-
-
 
     if (!iswebp) {
         var data_key, data_val;
@@ -38,7 +36,7 @@ $(window).on('load', function() {
 
     window.setTimeout(function() {
         $('body').addClass('load');
-    }, 150);
+    }, 100);
 
 });
 
@@ -65,26 +63,169 @@ function setCookie(c_name, value, exdays) {
 
 $(document).ready(function() {
 
-    var utm_source = localStorage.utm_source ? localStorage.utm_source : '0',
-        utm_content = localStorage.utm_content ? localStorage.utm_content : '0',
-        utm_term = localStorage.utm_term ? localStorage.utm_term : '0',
-        utm_campaign = localStorage.utm_campaign ? localStorage.utm_campaign : '0',
-        utm_medium = localStorage.utm_medium ? localStorage.utm_medium : '0',
-        response_id = localStorage.response_id ? localStorage.response_id : '0';
-    var t_href = '//t.me/EDPLATFORMA_bot?start=i_id-' + response_id + '_cc-' + utm_content + '_ck-' + utm_term + '_cn-' + utm_campaign + '_cm-' + utm_medium + '_cs-' + utm_source + '';
-    var m_href = '//m.me/clubplatforma?ref=i_id-' + response_id + '_cc-' + utm_content + '_ck-' + utm_term + '_cn-' + utm_campaign + '_cm-' + utm_medium + '_cs-' + utm_source + '';
+    window.setTimeout(function() {
+        $('.ACeBVhdPRSq').addClass('load');
+    }, 50);
 
-    $('body').find('#btn_mes_tg').attr('href', t_href)
-    $('body').find('#btn_mes_me').attr('href', m_href)
+    window.setTimeout(function() {
+        $('[type=tel]').intlTelInput({
+            allowExtensions: false,
+            autoFormat: true,
+            autoHideDialCode: true,
+            autoPlaceholder: true,
+            defaultCountry: "auto",
+            geoIpLookup: function(callback) {
+                $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
+                    var countryCode = (resp && resp.country) ? resp.country : "";
+                    callback(countryCode);
+                });
+            },
+            nationalMode: false,
+            numberType: 'MOBILE',
+            preferredCountries: ['ua', 'ru', 'by', 'us']
+        });
 
-    /* ------------------- device ------------------- */
+        $('#big_video,#video1, #video2,#video3,#video4,#video5,#video6,#video7,#video8,#video9,#video10,#video11,#video12,#video13,#video14,#video15,#video16,#video17,#video18,#video19,#video20,#video21').on('shown.bs.modal', function() {
+            var video = $(this).find('.endognath').get(0).play();
+        }).on('hide.bs.modal', function() {
+            var video = $(this).find('.endognath').get(0).pause();
+        });
 
-    $('body > input[name="device"]').val($('html').attr('class'));
 
 
-    /* ------------------- carousel ------------------- */
+        $(".js-q-fancybox").fancybox({
+            protect: true,
+            buttons: [
+                'zoom',
+                'close'
+            ]
+        });
+
+        $('.sec2 .btn_review').click(function() {
+            $('.hidden_block').toggleClass('active');
+
+        });
+
+        $('.sec2 .btn_review').click(function() {
+            if ($(".hidden_block").hasClass("active")) {
+                $(this).html('Скрыть ЕЩЕ 13 ОТЗЫВОВ');
+            } else {
+                $('html, body').animate({
+                    scrollTop: $('.sec2').offset().top
+                }, 500);
+                $(this).html('показать ЕЩЕ 13 ОТЗЫВОВ');
+            }
+        });
+
+        $('.book_aut_wrap .btn_review').click(function() {
+            $('.aut_wrap').toggleClass('active');
+        });
+
+        $('.book_aut_wrap .btn_review').click(function() {
+            if ($(".aut_wrap").hasClass("active")) {
+                $(this).html('скрыть бонусы');
+            } else {
+                $('html, body').animate({
+                    scrollTop: $('.book_aut_wrap').offset().top
+                }, 500);
+                $(this).html('ПОКАЗАТЬ ЕЩЕ 10 ШТ');
+            }
+        });
+
+        $('.btn_review2').click(function() {
+            $('.rev_block').toggleClass('active');
+
+            $(this).toggleClass('btn_active');
+        });
+
+        $('button.btn_review2').click(function() {
+            if ($(".rev_block").hasClass("active")) {
+                $(this).html('Скрыть все отзывы');
+            } else {
+                $('html, body').animate({
+                    scrollTop: $('.XcNEqAjaVgs').offset().top
+                }, 500);
+                $(this).html('Показать все отзывы');
+            }
+        });
+
+        $(function() {
+
+            var timerend = 7 * 60 * 1000;
+
+            if (window.document.URL === 'https://edplatforma.com/viborbileta/') {
+                timerend = 24 * 60 * 60 * 1000;
+            }
+
+            var coki = getCookie('timerLand');
+            //coki = false
+            var end;
+
+            if (coki) {
+                end = coki;
+            } else {
+                end = new Date();
+                setCookie('timerLand', end.getTime(), 14)
+            }
+
+            var _milisec = 10;
+            var _second = _milisec * 100;
+            var _minute = _second * 60;
+            var _hour = _minute * 60;
+            var _day = _hour * 24;
+
+            var parentElem = $('.timer_row, .t'),
+                day = parentElem.find('.timer_col__days .timer_p__num'),
+                hour = parentElem.find('.timer_col__hours .timer_p__num'),
+                min = parentElem.find('.timer_col__minutes .timer_p__num'),
+                sec = parentElem.find('.timer_col__seconds .timer_p__num'),
+                mili = parentElem.find('.timer_col__milliseconds .timer_p__num');
+
+            function showRemaining() {
+                var now = new Date();
+                var distance = end - now + timerend;
+
+                if (distance < 0) {
+
+                    day.text("00");
+                    hour.text("00");
+                    min.text("00");
+                    sec.text("00");
+                    mili.text("00");
+
+                    clearInterval(intervalTimer);
+                    return;
+                }
+
+                var days = Math.floor(distance / _day);
+                var hours = Math.floor((distance % _day) / _hour);
+                var minutes = Math.floor((distance % _hour) / _minute);
+                var seconds = Math.floor((distance % _minute) / _second);
+                var miliseconds = Math.floor((distance % _second) / _milisec);
+
+                if (seconds < 10) seconds = '0' + seconds;
+                if (minutes < 10) minutes = '0' + minutes;
+                if (hours < 10) hours = '0' + hours;
+                if (days < 10) days = '0' + days;
+
+                day.text(days);
+                hour.text(hours);
+                min.text(minutes);
+                sec.text(seconds);
+                mili.text(miliseconds);
+            };
+
+            var intervalTimer = setInterval(showRemaining, 10);
+        });
+
+
+
+    }, 1000);
+
+    /* ------------------- carousel ------------------- 
 
     $(function() {
+        console.log('3');
         var carousel = $("#carousel").waterwheelCarousel({
             flankingItems: 2,
             separationMultiplier: 0.1,
@@ -104,186 +245,33 @@ $(document).ready(function() {
         });
 
     });
+*/
+    /* 
+        var utm_source = localStorage.utm_source ? localStorage.utm_source : '0',
+            utm_content = localStorage.utm_content ? localStorage.utm_content : '0',
+            utm_term = localStorage.utm_term ? localStorage.utm_term : '0',
+            utm_campaign = localStorage.utm_campaign ? localStorage.utm_campaign : '0',
+            utm_medium = localStorage.utm_medium ? localStorage.utm_medium : '0',
+            response_id = localStorage.response_id ? localStorage.response_id : '0';
+        var t_href = '//t.me/EDPLATFORMA_bot?start=i_id-' + response_id + '_cc-' + utm_content + '_ck-' + utm_term + '_cn-' + utm_campaign + '_cm-' + utm_medium + '_cs-' + utm_source + '';
+        var m_href = '//m.me/clubplatforma?ref=i_id-' + response_id + '_cc-' + utm_content + '_ck-' + utm_term + '_cn-' + utm_campaign + '_cm-' + utm_medium + '_cs-' + utm_source + '';
+
+        $('body').find('#btn_mes_tg').attr('href', t_href)
+        $('body').find('#btn_mes_me').attr('href', m_href)
+    */
+    /* ------------------- device ------------------- */
+
+    $('body > input[name="device"]').val($('html').attr('class'));
+
+
+
 
     /* ------------------- intl tel input ------------------- */
 
-    $('[type=tel]').intlTelInput({
-        allowExtensions: false,
-        autoFormat: true,
-        autoHideDialCode: true,
-        autoPlaceholder: true,
-        defaultCountry: "auto",
-        geoIpLookup: function(callback) {
-            $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
-                var countryCode = (resp && resp.country) ? resp.country : "";
-                callback(countryCode);
-            });
-        },
-        nationalMode: false,
-        numberType: 'MOBILE',
-        preferredCountries: ['ua', 'ru', 'by', 'us']
-    });
 
-    /* ------------------- video autoplay & autopause ------------------- */
-    $(function() {
-        $('#big_video,#video1, #video2,#video3,#video4,#video5,#video6,#video7,#video8,#video9,#video10,#video11,#video12,#video13,#video14,#video15,#video16,#video17,#video18,#video19,#video20,#video21').on('shown.bs.modal', function() {
-            var modal = $(this),
-                video = modal.find('.endognath');
-            video.get(0).play();
-        }).on('hidden.bs.modal', function() {
-            var modal = $(this),
-                video = modal.find('.endognath');
-            video.get(0).pause();
-        });
-    });
-    $(function() {
-        $(".js-q-fancybox").fancybox({
-            protect: true,
-            buttons: [
-                'zoom',
-                'close'
-            ]
-        })
-    });
-
-    $(function() {
-        $('.sec2 .btn_review').click(function() {
-            $('.hidden_block').toggleClass('active');
-
-        })
-
-        $('.sec2 .btn_review').click(function() {
-            if ($(".hidden_block").hasClass("active")) {
-                $(this).html('Скрыть ЕЩЕ 13 ОТЗЫВОВ')
-            } else {
-                $('html, body').animate({
-                    scrollTop: $('.sec2').offset().top
-                }, 500);
-                $(this).html('показать ЕЩЕ 13 ОТЗЫВОВ')
-            };
-
-
-
-        })
-    });
-
-    $(function() {
-        $('.book_aut_wrap .btn_review').click(function() {
-            $('.aut_wrap').toggleClass('active');
-
-        })
-
-        $('.book_aut_wrap .btn_review').click(function() {
-            if ($(".aut_wrap").hasClass("active")) {
-                $(this).html('скрыть бонусы')
-            } else {
-                $('html, body').animate({
-                    scrollTop: $('.book_aut_wrap').offset().top
-                }, 500);
-                $(this).html('ПОКАЗАТЬ ЕЩЕ 10 ШТ')
-            };
-
-
-
-        })
-    });
-
-    $(function() {
-        $('.btn_review2').click(function() {
-            $('.rev_block').toggleClass('active');
-
-            $(this).toggleClass('btn_active');
-
-        })
-
-        $('button.btn_review2').click(function() {
-            if ($(".rev_block").hasClass("active")) {
-                $(this).html('Скрыть все отзывы')
-
-            } else {
-                $('html, body').animate({
-                    scrollTop: $('.XcNEqAjaVgs').offset().top
-                }, 500);
-                $(this).html('Показать все отзывы')
-            };
-
-
-
-        })
-
-
-    });
 
     /* ------------------- timer ------------------- */
-    $(function() {
 
-
-        var timerend = 7 * 60 * 1000;
-
-        if (window.document.URL === 'https://edplatforma.com/viborbileta/') {
-            timerend = 24 * 60 * 60 * 1000;
-        }
-
-        var coki = getCookie('timerLand');
-        //coki = false
-        var end;
-
-        if (coki) {
-            end = coki;
-        } else {
-            end = new Date();
-            setCookie('timerLand', end.getTime(), 14)
-        }
-
-        var _milisec = 10;
-        var _second = _milisec * 100;
-        var _minute = _second * 60;
-        var _hour = _minute * 60;
-        var _day = _hour * 24;
-
-        var parentElem = $('.timer_row, .t'),
-            day = parentElem.find('.timer_col__days .timer_p__num'),
-            hour = parentElem.find('.timer_col__hours .timer_p__num'),
-            min = parentElem.find('.timer_col__minutes .timer_p__num'),
-            sec = parentElem.find('.timer_col__seconds .timer_p__num'),
-            mili = parentElem.find('.timer_col__milliseconds .timer_p__num');
-
-        function showRemaining() {
-            var now = new Date();
-            var distance = end - now + timerend;
-
-            if (distance < 0) {
-
-                day.text("00");
-                hour.text("00");
-                min.text("00");
-                sec.text("00");
-                mili.text("00");
-
-                clearInterval(intervalTimer);
-                return;
-            }
-
-            var days = Math.floor(distance / _day);
-            var hours = Math.floor((distance % _day) / _hour);
-            var minutes = Math.floor((distance % _hour) / _minute);
-            var seconds = Math.floor((distance % _minute) / _second);
-            var miliseconds = Math.floor((distance % _second) / _milisec);
-
-            if (seconds < 10) seconds = '0' + seconds;
-            if (minutes < 10) minutes = '0' + minutes;
-            if (hours < 10) hours = '0' + hours;
-            if (days < 10) days = '0' + days;
-
-            day.text(days);
-            hour.text(hours);
-            min.text(minutes);
-            sec.text(seconds);
-            mili.text(miliseconds);
-        };
-
-        var intervalTimer = setInterval(showRemaining, 10);
-    });
 
     /* ------------------- modals ------------------- */
     /* html to overflow:hidden */
@@ -318,9 +306,10 @@ $(document).ready(function() {
     $(function() {
         var speakersModalId = '#olson';
 
-        function speakerModalChange(img, name, descr, tags, whoiswho) {
+        function speakerModalChange(img, img_temp, name, descr, tags, whoiswho) {
             var modal = $('.modal' + speakersModalId);
-            modal.find('.UvUvNEQcByu').attr('src', img);
+            modal.find('.ZvihvfhJKbA').html('').append(img_temp);
+            modal.find('.UvUvNEQcByu').attr('data-src', img);
             modal.find('.lucencies').text(name);
             modal.find('input[name="form"]').val('Форма - Спикер ' + name + ' (pop-up)');
             modal.find('.ravin').text(descr);
@@ -332,12 +321,13 @@ $(document).ready(function() {
         }
         $('button[data-target="' + speakersModalId + '"]').on('click', function() {
             var speaker = $(this).parents('.zIboLVArxtm'),
+                speaker_img_temp = speaker.find('.ZvihvfhJKbA').html(),
                 speaker_img = speaker.find('.UvUvNEQcByu')[0].src,
                 speaker_name = speaker.find('.zuAteEXQXKC').text(),
                 speaker_descr = speaker.find('.HeskajyjyoC').text(),
                 speaker_tags = speaker.find('.mMEWOuHcjIL .row').html(),
                 speaker_whoiswho = speaker.find('input[name="whoiswho"]');
-            speakerModalChange(speaker_img, speaker_name, speaker_descr, speaker_tags, speaker_whoiswho);
+            speakerModalChange(speaker_img, speaker_img_temp, speaker_name, speaker_descr, speaker_tags, speaker_whoiswho);
         });
     });
 
@@ -479,15 +469,13 @@ $(function() {
     }
 
     if (localStorage.name) {
-        $('input[name="name"]').val(localStorage.name)
+        $('input[name="name"]').val(localStorage.name);
     }
     if (localStorage.email) {
-        if (localStorage.email === 'undefined') {} else {
-            $('input[name="email"]').val(localStorage.email)
-        }
+        $('input[name="email"]').val(localStorage.email);
     }
     if (localStorage.phone) {
-        $('input[name="phone"]').val(localStorage.phone)
+        $('input[name="phone"]').val(localStorage.phone);
     }
 
 
@@ -505,6 +493,7 @@ $(function() {
             productCount = form.find('input[name="productCount"]').val(),
             amount = form.find('input[name="amount"]').val(),
             productPrice = form.find('input[name="productPrice"]').val();
+
         var page_url = $('body > input[name="page_url"]').val(),
             ip = $('body > input[name="ip"]').val(),
             utm_campaign = getURLParameter('utm_campaign') ? getURLParameter('utm_campaign') : localStorage.utm_campaign,
@@ -560,11 +549,7 @@ $(function() {
             },
             success: function(response) {
                 var response = JSON.parse(response);
-                var resp = (JSON.parse(response.data));
-
-
-                form.find('button[type="submit"]').removeAttr('disabled');
-                $('body').removeClass('loading');
+                var resp = JSON.parse(response.data);
 
                 localStorage.setItem("name", name);
                 localStorage.setItem("email", email);
@@ -604,6 +589,8 @@ $(function() {
                         data: gDataFIelds,
                         statusCode: {
                             0: function() {
+                                form.find('button[type="submit"]').removeAttr('disabled');
+                                $('body').removeClass('loading');
                                 if (thx) {
                                     window.location.href = thx;
                                 } else {

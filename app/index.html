@@ -13,8 +13,8 @@
 
     <!-- Template Basic Images Start -->
 
-    <link rel="icon" href="img/favicon/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon-180x180.png">
+    <link rel="icon" href="favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon-180x180.png">
 
     <meta property="og:image" content="og-min.png">
     <!-- Template Basic Images End -->
@@ -29,22 +29,43 @@
     <style type="text/css">
         body {
             opacity: 0;
-            transition: opacity .4s ease;
+        }
+        
+        .fade:not(.show) {
+            opacity: 0;
+        }
+        
+        body:before {
+            content: "";
+            width: 100%;
+            height: 120%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background-color: #23357f;
+        }
+        
+        body>section {
+            opacity: 0;
+            transition: opacity .3s ease;
         }
     </style>
 
 </head>
 
 <body>
-    <section class="ACeBVhdPRSq" data-bgurl="img/ACeBVhdPRSq.png">
+    <section class="ACeBVhdPRSq" data-bgurl="img/ACeBVhdPRSq.webp">
         <div class="container">
-            <div class="row align-items-center mFZjNwvrluB">
+            <div class="row align-items-center mFZjNwvrluB ">
                 <div class="col-lg-5 col-xl-3 HjRboQCXqrB">
+
                     <picture>
-                        <source type="image/webp" data-srcset="img/logo.webp" />
-                        <source type="image/png" data-srcset="img/logo.png" />
-                        <img data-src="img/logo.png" alt="" class="lazyload logo KqBChHqlHvT" />
+                        <source type="image/webp" srcset="img/logo.webp" />
+                        <source type="image/png" srcset="img/logo.png" />
+                        <img src="img/logo.png" alt="" class="lazyloaded logo KqBChHqlHvT" />
                     </picture>
+
                 </div>
                 <div class="col-lg-5 col-xl-4 uUkeLSfdtdy">
                     <p class="VMsIyNdqeuw"><b>21 и 22 марта 2020</b></p>
@@ -65,9 +86,7 @@
                 <div class="col-xl-7 cBuXcVjbVpb">
                     <div class="row no-gutters">
                         <div class="col-12 ePufJwxYkge">
-                            <p class="rWXbPxzTmoB">
-                                <h2><b>КЛЮЧЕВОЙ ФОРУМ СТРАНЫ</b></h2>
-                            </p>
+                            <h2 class="rWXbPxzTmoB"><b>КЛЮЧЕВОЙ ФОРУМ СТРАНЫ</b></h2>
                         </div>
                         <div class="col-12 aTtqhaybYHv">
                             <p class="KSwoDycexFW">по созданию и продвижению образовательных проектов</p>
@@ -77,14 +96,17 @@
                         </div>
                         <div class="col-12 gWETbfbRRbi">
                             <p class="mGXyvgzVMtT">
-                                <picture>
-                                    <img data-src="img/EDPLATFORMA2020.svg" alt="" class="lazyload logo KqBChHqlHvT" />
-                                </picture>
+
+                                <img src="svg/EDPLATFORMA2020.svg" alt="" class="lazyloaded logo KqBChHqlHvT" />
+
                             </p>
                             <!-- <p class="mGXyvgzVMtT">EDPLATFORMA 2020</p> -->
                         </div>
                         <div class="col-12 gnszNwcSmWu">
-                            <p class="utdxYWlXyHc"><span class="dCQJQMCBAHd">Узнайте от успешных практиков, <b>как эксперту развивать личный бренд в соцсетях, выстраивать воронки продаж и проводить вебинары, чтобы</b></p>
+                            <p class="utdxYWlXyHc">
+                                <span class="dCQJQMCBAHd">Узнайте от успешных практиков, как эксперту развивать личный бренд в соцсетях, выстраивать воронки продаж и проводить вебинары, чтобы</span>
+
+                            </p>
                         </div>
                         <div class="col-12 KUHWIZFIidn">
                             <p class="YTxutSvyADf"><span class="back-blue">системно увеличивать прибыль в образовательном бизнесе</span></p>
@@ -100,9 +122,9 @@
                                     <div class="form_flex flex">
                                         <div class="form_img">
                                             <picture>
-                                                <source type="image/webp" data-srcset="img/OKgZyFbQBju.webp" />
-                                                <source type="image/png" data-srcset="img/OKgZyFbQBju.png" />
-                                                <img data-src="img/OKgZyFbQBju.png" alt="p" class="lazyload KqBChHqlHvT" />
+                                                <source type="image/webp" srcset="img/OKgZyFbQBju.webp" />
+                                                <source type="image/png" srcset="img/OKgZyFbQBju.png" />
+                                                <img src="img/OKgZyFbQBju.png" alt="p" class="lazyloaded KqBChHqlHvT" />
                                             </picture>
                                         </div>
                                         <div class="text_wrap">
@@ -175,9 +197,9 @@
                     <div class="row no-gutters">
                         <div class="col-12 mwjtwLwVDUy">
                             <picture>
-                                <source type="image/webp" data-srcset="img/sot1.webp" />
-                                <source type="image/png" data-srcset="img/sot1.png" />
-                                <img data-src="img/sot1.png" alt="" class="lazyload UvUvNEQcByu" />
+                                <source type="image/webp" srcset="img/sot1.webp" />
+                                <source type="image/png" srcset="img/sot1.png" />
+                                <img src="img/sot1.png" alt="" class="lazyloaded UvUvNEQcByu" />
                             </picture>
                         </div>
                         <div class="col-12 XAyNqqtuTTS">
@@ -189,9 +211,9 @@
                     <div class="row no-gutters">
                         <div class="col-12 mwjtwLwVDUy">
                             <picture>
-                                <source type="image/webp" data-srcset="img/samoylov.webp" />
-                                <source type="image/png" data-srcset="img/samoylov.png" />
-                                <img data-src="img/samoylov.png" alt="" class="lazyload UvUvNEQcByu" />
+                                <source type="image/webp" srcset="img/samoylov.webp" />
+                                <source type="image/png" srcset="img/samoylov.png" />
+                                <img src="img/samoylov.png" alt="" class="lazyloaded UvUvNEQcByu" />
                             </picture>
                         </div>
                         <div class="col-12 XAyNqqtuTTS">
@@ -203,9 +225,9 @@
                     <div class="row no-gutters">
                         <div class="col-12 mwjtwLwVDUy">
                             <picture>
-                                <source type="image/webp" data-srcset="img/sot2.webp" />
-                                <source type="image/png" data-srcset="img/sot2.png" />
-                                <img data-src="img/sot2.png" alt="" class="lazyload UvUvNEQcByu" />
+                                <source type="image/webp" srcset="img/sot2.webp" />
+                                <source type="image/png" srcset="img/sot2.png" />
+                                <img src="img/sot2.png" alt="" class="lazyloaded UvUvNEQcByu" />
                             </picture>
                         </div>
                         <div class="col-12 XAyNqqtuTTS">
@@ -217,9 +239,9 @@
                     <div class="row no-gutters">
                         <div class="col-12 mwjtwLwVDUy">
                             <picture>
-                                <source type="image/webp" data-srcset="img/sot3.webp" />
-                                <source type="image/png" data-srcset="img/sot3.png" />
-                                <img data-src="img/sot3.png" alt="" class="lazyload UvUvNEQcByu" />
+                                <source type="image/webp" srcset="img/sot3.webp" />
+                                <source type="image/png" srcset="img/sot3.png" />
+                                <img src="img/sot3.png" alt="" class="lazyloaded UvUvNEQcByu" />
                             </picture>
                         </div>
                         <div class="col-12 XAyNqqtuTTS">
@@ -231,9 +253,9 @@
                     <div class="row no-gutters">
                         <div class="col-12 mwjtwLwVDUy">
                             <picture>
-                                <source type="image/webp" data-srcset="img/sot4.webp" />
-                                <source type="image/png" data-srcset="img/sot4.png" />
-                                <img data-src="img/sot4.png" alt="" class="lazyload UvUvNEQcByu" />
+                                <source type="image/webp" srcset="img/sot4.webp" />
+                                <source type="image/png" srcset="img/sot4.png" />
+                                <img src="img/sot4.png" alt="" class="lazyloaded UvUvNEQcByu" />
                             </picture>
 
                         </div>
@@ -276,6 +298,7 @@
             </div>
         </div>
     </section>
+
     <section class="qLQYiuqmYtS">
         <div class="container">
             <div class="row">
@@ -347,19 +370,19 @@
         </div>
     </section>
     <section class="sec1">
-        <div class="text_bg">edPlatforma</div>
+        <!-- <div class="text_bg">edPlatforma</div> -->
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <h2>Посмотрите что вас ждет</h2>
-                    <h3>как проходит форум Edplatforma</h3>
-                    <div class="block flex">
+                    <h3 class="pt-3">как проходит форум Edplatforma</h3>
+                    <div class="block flex" data-bgurl="svg/EDPLATFORMA.svg">
                         <div class="item">
                             <a href="#" class="ClMyxDkqhze" data-toggle="modal" data-target="#big_video">
                                 <picture>
-                                    <source type="image/webp" data-srcset="img/video_img.webp" />
-                                    <source type="image/png" data-srcset="img/video_img.png" />
-                                    <img data-src="img/video_img.png" alt="" class="lazyload wmjkCqPQOQg quFPzdVackB" />
+                                    <source type="image/webp" data-srcset="img/video_img_j.webp" />
+                                    <source type="image/png" data-srcset="img/video_img_j.png" />
+                                    <img data-src="img/video_img_j.png" alt="" class="lazyload wmjkCqPQOQg quFPzdVackB" />
                                 </picture>
                                 <div class="button_video">
                                     <span></span>
@@ -380,7 +403,7 @@
                         <div class="col-lg-7 lSFdETdDCjd">
                             <div class="row no-gutters haWBIeWOJLs">
                                 <div class="col-12 asodbrgWHeN">
-                                    <p class="eFxLSDlUapo"><span class="text-uppercase"><span class="quots"><img src="img/quots.svg" alt="q" class="lazyload"></span>Все очень просто:</span>
+                                    <p class="eFxLSDlUapo"><span class="text-uppercase"><span class="quots d-block d-md-inline-block"><img src="svg/quots.svg" alt="q" class="lazyload"></span>Все очень просто:</span>
                                     </p>
                                 </div>
                                 <div class="col-12 qgwvHNhBGsA">
@@ -388,7 +411,7 @@
                                     </span> — стать живой “точкой сборки” для всех представителей индустрии edutainment.
                                         <b>Объединить экспертов, продюсеров и специалистов образовательного бизнеса и тем самым запустить процессы создания платформ,</b> которые позитивно влияют на общество и вдохновляют на развитие в жизни и в бизнесе.
                                         <span class="small_quots">
-                                            <img src="img/small_quots.svg" alt="" class="lazyload"></span>
+                                            <img src="svg/small_quots.svg" alt="" class="lazyload"></span>
                                     </p>
                                 </div>
                             </div>
@@ -420,14 +443,14 @@
             </div>
         </div>
     </section>
-    <section class="KGbcyHoMzlE">
+    <section class="KGbcyHoMzlE" data-bgurl="img/KGbcyHoMzlE.webp">
         <div class="container olJeLdjnQbe">
             <div class="row dNAoYqnFHzq">
                 <div class="col-12 XkoeqJTrBNN">
                     <p class="fCUNWfhqDdf">Спикеры форума EDPLATFORMA 2020</p>
                 </div>
                 <div class="col-12 cuUDevttKzy">
-                    <p class="IgxoHdJWRZm"><span class="back-blue">6 экспертов-практиков</span></p>
+                    <p class="IgxoHdJWRZm"><span class="back-blue">Эксперты практики</span></p>
                 </div>
                 <div class="col-xl-3 col-lg-4 col-md-6 zIboLVArxtm">
                     <div class="row no-gutters BqBwypNMjii">
@@ -628,7 +651,7 @@
                             <p class="zuAteEXQXKC"><span class="text-blue">Андрей Крупкин</span></p>
                         </div>
                         <div class="col-12 MvbEIRdIxId">
-                            <p class="HeskajyjyoC">Эксперт по созданию и систематизации отделов продаж. Основательно консалтинговой компании "Бюро продаж Андрея Крупкина"</p>
+                            <p class="HeskajyjyoC">Эксперт по созданию и систематизации отделов продаж. Основатель консалтинговой компании "Бюро продаж Андрея Крупкина"</p>
                         </div>
                         <div class="col-12 DyaIgddKYer">
                             <picture>
@@ -719,7 +742,7 @@
                     <div class="row no-gutters BqBwypNMjii">
                         <div class="col-12 ZvihvfhJKbA">
                             <picture>
-                                <img data-src="img/sot.svg" alt="" class="lazyload UvUvNEQcByu HaoddmBZszO" />
+                                <img data-src="svg/sot.svg" alt="" class="lazyload UvUvNEQcByu HaoddmBZszO" />
                             </picture>
                         </div>
 
@@ -762,13 +785,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 IlaOaMOmlep">
-                    <div class="row no-gutters KsUPSeSKnOB">
+                    <div class="row no-gutters KsUPSeSKnOB" data-bgurl="img/form_bg_j.webp">
                         <div class="col-lg-9 tkHfIrcvHEZ">
                             <div class="row no-gutters">
                                 <div class="col-12 LamJKctpRfJ">
                                     <p class="ZTqNRZqKGOt">Программа форума</p>
                                 </div>
-                                <div class="col-12 MeaIjudHRSo">
+                                <div class="col-12 MeaIjudHRSo pb-2">
                                     <p class="visIYIhyBBP"><span class="back-white">Что Вас ждет на форуме?</span></p>
                                 </div>
                                 <div class="col-12 LZSfTKnoWqm">
@@ -777,12 +800,13 @@
                             </div>
                         </div>
                         <div class="col-lg-3 qrASRnRePRA">
-                            <picture>
-                                <source type="image/webp" data-srcset="img/zuWcAaVUAjk.webp" />
-                                <source type="image/png" data-srcset="img/zuWcAaVUAjk.png" />
-                                <img data-src="img/zuWcAaVUAjk.png" alt="" class="lazyload zuWcAaVUAjk" />
-                            </picture>
-
+                            <div>
+                                <picture>
+                                    <source type="image/webp" data-srcset="img/zuWcAaVUAjk.webp" />
+                                    <source type="image/png" data-srcset="img/zuWcAaVUAjk.png" />
+                                    <img data-src="img/zuWcAaVUAjk.png" alt="" class="lazyload zuWcAaVUAjk img-fluid" />
+                                </picture>
+                            </div>
 
                         </div>
                         <div class="col-12 rSjnnyMzrTh">
@@ -820,10 +844,10 @@
                 <div class="col-md-4">
                     <div class="item">
                         <a href="#" class="ClMyxDkqhze" data-toggle="modal" data-target="#video1">
-                            <picture>
+                            <picture class="w-100">
                                 <source type="image/webp" data-srcset="img/1otziv.webp" />
                                 <source type="image/png" data-srcset="img/1otziv.png" />
-                                <img data-src="img/1otziv.png" alt="" class="lazyload wmjkCqPQOQg quFPzdVackB" />
+                                <img data-src="img/1otziv.png" alt="" class="lazyload wmjkCqPQOQg quFPzdVackB img-fluid" />
                             </picture>
 
 
@@ -838,7 +862,7 @@
                 <div class="col-md-4 ">
                     <div class="item">
                         <a href="#" class="ClMyxDkqhze" data-toggle="modal" data-target="#video2">
-                            <picture>
+                            <picture class="w-100">
                                 <source type="image/webp" data-srcset="img/2otziv.webp" />
                                 <source type="image/png" data-srcset="img/2otziv.png" />
                                 <img data-src="img/2otziv.png" alt="" class="lazyload wmjkCqPQOQg quFPzdVackB" />
@@ -854,7 +878,7 @@
                 <div class="col-md-4">
                     <div class="item">
                         <a href="#" class="ClMyxDkqhze" data-toggle="modal" data-target="#video3">
-                            <picture>
+                            <picture class="w-100">
                                 <source type="image/webp" data-srcset="img/3otziv.webp" />
                                 <source type="image/png" data-srcset="img/3otziv.png" />
                                 <img data-src="img/3otziv.png" alt="" class="lazyload wmjkCqPQOQg quFPzdVackB" />
@@ -871,7 +895,7 @@
                 <div class="col-md-4">
                     <div class="item">
                         <a href="#" class="ClMyxDkqhze" data-toggle="modal" data-target="#video4">
-                            <picture>
+                            <picture class="w-100">
                                 <source type="image/webp" data-srcset="img/4otziv.webp" />
                                 <source type="image/png" data-srcset="img/4otziv.png" />
                                 <img data-src="img/4otziv.png" alt="" class="lazyload wmjkCqPQOQg quFPzdVackB" />
@@ -887,7 +911,7 @@
                 <div class="col-md-4">
                     <div class="item">
                         <a href="#" class="ClMyxDkqhze" data-toggle="modal" data-target="#video5">
-                            <picture>
+                            <picture class="w-100">
                                 <source type="image/webp" data-srcset="img/5otziv.webp" />
                                 <source type="image/png" data-srcset="img/5otziv.png" />
                                 <img data-src="img/5otziv.png" alt="" class="lazyload wmjkCqPQOQg quFPzdVackB" />
@@ -904,7 +928,7 @@
                 <div class="col-md-4">
                     <div class="item">
                         <a href="#" class="ClMyxDkqhze" data-toggle="modal" data-target="#video6">
-                            <picture>
+                            <picture class="w-100">
                                 <source type="image/webp" data-srcset="img/6otziv.webp" />
                                 <source type="image/png" data-srcset="img/6otziv.png" />
                                 <img data-src="img/6otziv.png" alt="" class="lazyload wmjkCqPQOQg quFPzdVackB" />
@@ -924,7 +948,7 @@
                     <div class="col-md-4">
                         <div class="item">
                             <a href="#" class="ClMyxDkqhze" data-toggle="modal" data-target="#video7">
-                                <picture>
+                                <picture class="w-100">
                                     <source type="image/webp" data-srcset="img/7otziv.webp" />
                                     <source type="image/png" data-srcset="img/7otziv.png" />
                                     <img data-src="img/7otziv.png" alt="" class="lazyload wmjkCqPQOQg quFPzdVackB" />
@@ -941,7 +965,7 @@
                     <div class="col-md-4 ">
                         <div class="item">
                             <a href="#" class="ClMyxDkqhze" data-toggle="modal" data-target="#video8">
-                                <picture>
+                                <picture class="w-100">
                                     <source type="image/webp" data-srcset="img/8otziv.webp" />
                                     <source type="image/png" data-srcset="img/8otziv.png" />
                                     <img data-src="img/8otziv.png" alt="" class="lazyload wmjkCqPQOQg quFPzdVackB" />
@@ -958,7 +982,7 @@
                     <div class="col-md-4">
                         <div class="item">
                             <a href="#" class="ClMyxDkqhze" data-toggle="modal" data-target="#video9">
-                                <picture>
+                                <picture class="w-100">
                                     <source type="image/webp" data-srcset="img/9otziv.webp" />
                                     <source type="image/png" data-srcset="img/9otziv.png" />
                                     <img data-src="img/9otziv.png" alt="" class="lazyload wmjkCqPQOQg quFPzdVackB" />
@@ -975,7 +999,7 @@
                     <div class="col-md-4">
                         <div class="item">
                             <a href="#" class="ClMyxDkqhze" data-toggle="modal" data-target="#video10">
-                                <picture>
+                                <picture class="w-100">
                                     <source type="image/webp" data-srcset="img/10otziv.webp" />
                                     <source type="image/png" data-srcset="img/10otziv.png" />
                                     <img data-src="img/10otziv.png" alt="" class="lazyload wmjkCqPQOQg quFPzdVackB" />
@@ -992,7 +1016,7 @@
                     <div class="col-md-4">
                         <div class="item">
                             <a href="#" class="ClMyxDkqhze" data-toggle="modal" data-target="#video11">
-                                <picture>
+                                <picture class="w-100">
                                     <source type="image/webp" data-srcset="img/11otziv.webp" />
                                     <source type="image/png" data-srcset="img/11otziv.png" />
                                     <img data-src="img/11otziv.png" alt="" class="lazyload wmjkCqPQOQg quFPzdVackB" />
@@ -1009,7 +1033,7 @@
                     <div class="col-md-4">
                         <div class="item">
                             <a href="#" class="ClMyxDkqhze" data-toggle="modal" data-target="#video12">
-                                <picture>
+                                <picture class="w-100">
                                     <source type="image/webp" data-srcset="img/12otziv.webp" />
                                     <source type="image/png" data-srcset="img/12otziv.png" />
                                     <img data-src="img/12otziv.png" alt="" class="lazyload wmjkCqPQOQg quFPzdVackB" />
@@ -1026,7 +1050,7 @@
                     <div class="col-md-4">
                         <div class="item">
                             <a href="#" class="ClMyxDkqhze" data-toggle="modal" data-target="#video13">
-                                <picture>
+                                <picture class="w-100">
                                     <source type="image/webp" data-srcset="img/13otziv.webp" />
                                     <source type="image/png" data-srcset="img/13otziv.png" />
                                     <img data-src="img/13otziv.png" alt="" class="lazyload wmjkCqPQOQg quFPzdVackB" />
@@ -1043,7 +1067,7 @@
                     <div class="col-md-4">
                         <div class="item">
                             <a href="#" class="ClMyxDkqhze" data-toggle="modal" data-target="#video14">
-                                <picture>
+                                <picture class="w-100">
                                     <source type="image/webp" data-srcset="img/14otziv.webp" />
                                     <source type="image/png" data-srcset="img/14otziv.png" />
                                     <img data-src="img/14otziv.png" alt="" class="lazyload wmjkCqPQOQg quFPzdVackB" />
@@ -1060,7 +1084,7 @@
                     <div class="col-md-4">
                         <div class="item">
                             <a href="#" class="ClMyxDkqhze" data-toggle="modal" data-target="#video15">
-                                <picture>
+                                <picture class="w-100">
                                     <source type="image/webp" data-srcset="img/15otziv.webp" />
                                     <source type="image/png" data-srcset="img/15otziv.png" />
                                     <img data-src="img/15otziv.png" alt="" class="lazyload wmjkCqPQOQg quFPzdVackB" />
@@ -1077,7 +1101,7 @@
                     <div class="col-md-4">
                         <div class="item">
                             <a href="#" class="ClMyxDkqhze" data-toggle="modal" data-target="#video16">
-                                <picture>
+                                <picture class="w-100">
                                     <source type="image/webp" data-srcset="img/16otziv.webp" />
                                     <source type="image/png" data-srcset="img/16otziv.png" />
                                     <img data-src="img/16otziv.png" alt="" class="lazyload wmjkCqPQOQg quFPzdVackB" />
@@ -1094,7 +1118,7 @@
                     <div class="col-md-4">
                         <div class="item">
                             <a href="#" class="ClMyxDkqhze" data-toggle="modal" data-target="#video17">
-                                <picture>
+                                <picture class="w-100">
                                     <source type="image/webp" data-srcset="img/17otziv.webp" />
                                     <source type="image/png" data-srcset="img/17otziv.png" />
                                     <img data-src="img/17otziv.png" alt="" class="lazyload wmjkCqPQOQg quFPzdVackB" />
@@ -1111,7 +1135,7 @@
                     <div class="col-md-4">
                         <div class="item">
                             <a href="#" class="ClMyxDkqhze" data-toggle="modal" data-target="#video18">
-                                <picture>
+                                <picture class="w-100">
                                     <source type="image/webp" data-srcset="img/18otziv.webp" />
                                     <source type="image/png" data-srcset="img/18otziv.png" />
                                     <img data-src="img/18otziv.png" alt="" class="lazyload wmjkCqPQOQg quFPzdVackB" />
@@ -1128,7 +1152,7 @@
                     <div class="col-md-4">
                         <div class="item">
                             <a href="#" class="ClMyxDkqhze" data-toggle="modal" data-target="#video19">
-                                <picture>
+                                <picture class="w-100">
                                     <source type="image/webp" data-srcset="img/19otziv.webp" />
                                     <source type="image/png" data-srcset="img/19otziv.png" />
                                     <img data-src="img/19otziv.png" alt="" class="lazyload wmjkCqPQOQg quFPzdVackB" />
@@ -1145,7 +1169,7 @@
                     <div class="col-md-4">
                         <div class="item">
                             <a href="#" class="ClMyxDkqhze" data-toggle="modal" data-target="#video20">
-                                <picture>
+                                <picture class="w-100">
                                     <source type="image/webp" data-srcset="img/20otziv.webp" />
                                     <source type="image/png" data-srcset="img/20otziv.png" />
                                     <img data-src="img/20otziv.png" alt="" class="lazyload wmjkCqPQOQg quFPzdVackB" />
@@ -1162,7 +1186,7 @@
                     <div class="col-md-4">
                         <div class="item">
                             <a href="#" class="ClMyxDkqhze" data-toggle="modal" data-target="#video21">
-                                <picture>
+                                <picture class="w-100">
                                     <source type="image/webp" data-srcset="img/21otziv.webp" />
                                     <source type="image/png" data-srcset="img/21otziv.png" />
                                     <img data-src="img/21otziv.png" alt="" class="lazyload wmjkCqPQOQg quFPzdVackB" />
@@ -1186,7 +1210,7 @@
     </section>
     <section class="telegram_sec">
         <div class="container">
-            <div class="row">
+            <div class="row ">
                 <div class="col-md-12">
                     <div class="block flex">
                         <div class="item">
@@ -1235,27 +1259,29 @@
             </div>
         </div>
         <div class="container2">
-            <div class="row">
-                <div class="col-md-12">
+            <div class="row justify-content-center">
+                <div class="col-11 col-md-12">
                     <div class="block2 flex">
-                        <div class="img_wrap">
+                        <div class="img_wrap w-auto">
                             <picture>
                                 <source type="image/webp" data-srcset="img/telegram.webp" />
                                 <source type="image/png" data-srcset="img/telegram.png" />
-                                <img data-src="img/telegram.png" alt="t" class="lazyload" />
+                                <img data-src="img/telegram.png" alt="t" class="lazyload img-fluid" style="max-width: 150px;" />
                             </picture>
                         </div>
                         <div class="text_wrap">
                             <h3>Зарегистрируйтесь на <span>форум EDPLATFORMA 2020,</span> </h3>
                             <p>чтобы присоединиться к единомышленникам в группе TELEGRAM и получить выгоду от ивента до его начала </p>
                         </div>
-                        <a href="#" data-toggle="modal" data-target="#autoloaders" class="btn_join">Присоединиться к сообществу</a>
+                        <div class="text_wrap text-center">
+                            <a href="#" data-toggle="modal" data-target="#autoloaders" class="btn_join">Присоединиться к сообществу</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="QFseYXWyYwN">
+    <section class="QFseYXWyYwN" data-bgurl="img/QFseYXWyYwN_j.webp">
         <div class="container CiTDnCNnQJl">
             <div class="row LJcWYxtnDYf">
                 <div class="col-12 ZBXhRACxhpt">
@@ -1575,22 +1601,18 @@
                             <source type="image/webp" data-srcset="img/photo10.webp" />
                             <source type="image/jpeg" data-srcset="img/photo10.jpg" />
                             <img data-src="img/photo10.jpg" alt="" class="lazyload" />
-                        </picture>></a>
+                        </picture>
+                    </a>
                 </div>
-
             </div>
         </div>
-
     </section>
     <section class="XcNEqAjaVgs">
         <div class="container3">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>такие отзывы пишут в соцсетях</h2>
-                    <h3>участники EDPLATFORMA:</h3>
-
+                    <h2>такие отзывы пишут в соцсетях участники EDPLATFORMA:</h2>
                 </div>
-
             </div>
             <div class="rev_block">
                 <div class="row">
@@ -2104,15 +2126,15 @@
             </div>
         </div>
     </section>
-    <section class="HTYwWTBThKy" data-bgurl="img/ACeBVhdPRSq.png">
+    <section class="HTYwWTBThKy" data-bgurl="img/ACeBVhdPRSq.webp">
         <div class="container">
             <div class="row align-items-center TpurWzWUsiH">
                 <div class="col-xl-7 cBuXcVjbVpb">
                     <div class="row no-gutters">
                         <div class="col-12 ePufJwxYkge">
-                            <p class="rWXbPxzTmoB">
+                            <div class="rWXbPxzTmoB">
                                 <h2><b>КЛЮЧЕВОЙ ФОРУМ СТРАНЫ</b></h2>
-                            </p>
+                            </div>
                         </div>
                         <div class="col-12 aTtqhaybYHv">
                             <p class="KSwoDycexFW">по созданию и продвижению образовательных проектов</p>
@@ -2123,7 +2145,7 @@
                         <div class="col-12 gWETbfbRRbi">
                             <p class="mGXyvgzVMtT">
                                 <picture>
-                                    <img data-src="img/EDPLATFORMA2020.svg" alt="" class="lazyload logo" />
+                                    <img data-src="svg/EDPLATFORMA2020.svg" alt="" class="lazyload logo" />
                                 </picture>
                             </p>
                             <!-- <p class="mGXyvgzVMtT">EDPLATFORMA 2020</p> -->
@@ -2274,11 +2296,6 @@
                             <div class="row sinology">
                                 <div class="col-sm-5">
                                     <div class="ZvihvfhJKbA">
-                                        <picture>
-                                            <source type="image/webp" data-srcset="img/MaRgWhXEiRN.webp" />
-                                            <source type="image/png" data-srcset="img/MaRgWhXEiRN.png" />
-                                            <img data-src="img/MaRgWhXEiRN.png" alt="" class="lazyload UvUvNEQcByu HaoddmBZszO" />
-                                        </picture>
                                     </div>
                                 </div>
                                 <div class="col-sm-7">
@@ -2392,13 +2409,13 @@
         </div>
     </div>
     <!-- Видео - 1 -->
-    <div class="modal fade" id="video1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="video" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="container-fluid">
                 <div class="row thightness">
                     <div class="col-xl-7 toploftical chickory">
                         <div class="azaleas">
-                            <video class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
+                            <video class="endognath" preload="none" width="100%" height="100%" controls="controls" controlsList="nodownload">
                                     <source src="video/video1.mp4" type='video/mp4'>
                                     Видео не поддерживается Вашим браузером
                                 </video>
@@ -2430,7 +2447,7 @@
                 <div class="row thightness">
                     <div class="col-xl-7 toploftical chickory">
                         <div class="azaleas">
-                            <video class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
+                            <video preload="none" class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
                                     <source src="video/video2.mp4" type='video/mp4'>
                                     Видео не поддерживается Вашим браузером
                                 </video>
@@ -2462,7 +2479,7 @@
                 <div class="row thightness">
                     <div class="col-xl-7 toploftical chickory">
                         <div class="azaleas">
-                            <video class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
+                            <video preload="none" class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
                                     <source src="video/video3.mp4" type='video/mp4'>
                                     Видео не поддерживается Вашим браузером
                                 </video>
@@ -2493,7 +2510,7 @@
                 <div class="row thightness">
                     <div class="col-xl-7 toploftical chickory">
                         <div class="azaleas">
-                            <video class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
+                            <video preload="none" class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
                                     <source src="video/video4.mp4" type='video/mp4'>
                                     Видео не поддерживается Вашим браузером
                                 </video>
@@ -2524,7 +2541,7 @@
                 <div class="row thightness">
                     <div class="col-xl-7 toploftical chickory">
                         <div class="azaleas">
-                            <video class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
+                            <video preload="none" class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
                                     <source src="video/video5.mp4" type='video/mp4'>
                                     Видео не поддерживается Вашим браузером
                                 </video>
@@ -2555,7 +2572,7 @@
                 <div class="row thightness">
                     <div class="col-xl-7 toploftical chickory">
                         <div class="azaleas">
-                            <video class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
+                            <video preload="none" class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
                                     <source src="video/video6.mp4" type='video/mp4'>
                                     Видео не поддерживается Вашим браузером
                                 </video>
@@ -2586,7 +2603,7 @@
                 <div class="row thightness">
                     <div class="col-xl-7 toploftical chickory">
                         <div class="azaleas">
-                            <video class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
+                            <video preload="none" class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
                                     <source src="video/video7.mp4" type='video/mp4'>
                                     Видео не поддерживается Вашим браузером
                                 </video>
@@ -2617,7 +2634,7 @@
                 <div class="row thightness">
                     <div class="col-xl-7 toploftical chickory">
                         <div class="azaleas">
-                            <video class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
+                            <video preload="none" class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
                                     <source src="video/video8.mp4" type='video/mp4'>
                                     Видео не поддерживается Вашим браузером
                                 </video>
@@ -2648,7 +2665,7 @@
                 <div class="row thightness">
                     <div class="col-xl-7 toploftical chickory">
                         <div class="azaleas">
-                            <video class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
+                            <video preload="none" class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
                                     <source src="video/video9.mp4" type='video/mp4'>
                                     Видео не поддерживается Вашим браузером
                                 </video>
@@ -2678,7 +2695,7 @@
                 <div class="row thightness">
                     <div class="col-xl-7 toploftical chickory">
                         <div class="azaleas">
-                            <video class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
+                            <video preload="none" class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
                                     <source src="video/video10.mp4" type='video/mp4'>
                                     Видео не поддерживается Вашим браузером
                                 </video>
@@ -2709,7 +2726,7 @@
                 <div class="row thightness">
                     <div class="col-xl-7 toploftical chickory">
                         <div class="azaleas">
-                            <video class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
+                            <video preload="none" class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
                                     <source src="video/video11.mp4" type='video/mp4'>
                                     Видео не поддерживается Вашим браузером
                                 </video>
@@ -2740,7 +2757,7 @@
                 <div class="row thightness">
                     <div class="col-xl-7 toploftical chickory">
                         <div class="azaleas">
-                            <video class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
+                            <video preload="none" class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
                                     <source src="video/video12.mp4" type='video/mp4'>
                                     Видео не поддерживается Вашим браузером
                                 </video>
@@ -2772,7 +2789,7 @@
                 <div class="row thightness">
                     <div class="col-xl-7 toploftical chickory">
                         <div class="azaleas">
-                            <video class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
+                            <video preload="none" class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
                                     <source src="video/video13.mp4" type='video/mp4'>
                                     Видео не поддерживается Вашим браузером
                                 </video>
@@ -2802,7 +2819,7 @@
                 <div class="row thightness">
                     <div class="col-xl-7 toploftical chickory">
                         <div class="azaleas">
-                            <video class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
+                            <video preload="none" class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
                                     <source src="video/video14.mp4" type='video/mp4'>
                                     Видео не поддерживается Вашим браузером
                                 </video>
@@ -2834,7 +2851,7 @@
                 <div class="row thightness">
                     <div class="col-xl-7 toploftical chickory">
                         <div class="azaleas">
-                            <video class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
+                            <video preload="none" class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
                                     <source src="video/video15.mp4" type='video/mp4'>
                                     Видео не поддерживается Вашим браузером
                                 </video>
@@ -2866,7 +2883,7 @@
                 <div class="row thightness">
                     <div class="col-xl-7 toploftical chickory">
                         <div class="azaleas">
-                            <video class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
+                            <video preload="none" class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
                                     <source src="video/video16.mp4" type='video/mp4'>
                                     Видео не поддерживается Вашим браузером
                                 </video>
@@ -2898,7 +2915,7 @@
                 <div class="row thightness">
                     <div class="col-xl-7 toploftical chickory">
                         <div class="azaleas">
-                            <video class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
+                            <video preload="none" class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
                                     <source src="video/video17.mp4" type='video/mp4'>
                                     Видео не поддерживается Вашим браузером
                                 </video>
@@ -2930,7 +2947,7 @@
                 <div class="row thightness">
                     <div class="col-xl-7 toploftical chickory">
                         <div class="azaleas">
-                            <video class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
+                            <video preload="none" class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
                                     <source src="video/video18.mp4" type='video/mp4'>
                                     Видео не поддерживается Вашим браузером
                                 </video>
@@ -2962,7 +2979,7 @@
                 <div class="row thightness">
                     <div class="col-xl-7 toploftical chickory">
                         <div class="azaleas">
-                            <video class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
+                            <video preload="none" class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
                                     <source src="video/video19.mp4" type='video/mp4'>
                                     Видео не поддерживается Вашим браузером
                                 </video>
@@ -2994,7 +3011,7 @@
                 <div class="row thightness">
                     <div class="col-xl-7 toploftical chickory">
                         <div class="azaleas">
-                            <video class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
+                            <video preload="none" class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
                                     <source src="video/video20.mp4" type='video/mp4'>
                                     Видео не поддерживается Вашим браузером
                                 </video>
@@ -3027,7 +3044,7 @@
                 <div class="row thightness">
                     <div class="col-xl-7 toploftical chickory">
                         <div class="azaleas">
-                            <video class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
+                            <video preload="none" class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
                                     <source src="video/video21.mp4" type='video/mp4'>
                                     Видео не поддерживается Вашим браузером
                                 </video>
@@ -3058,7 +3075,7 @@
                 <div class="row thightness">
                     <div class="col-xl-7 toploftical chickory">
                         <div class="azaleas">
-                            <video class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
+                            <video preload="none" class="endognath" width="100%" height="100%" controls="controls" controlsList="nodownload">
                                     <source src="video/big_video.mp4" type='video/mp4'>
                                     Видео не поддерживается Вашим браузером
                                 </video>

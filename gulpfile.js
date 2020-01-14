@@ -63,7 +63,7 @@ gulp.task('styles', function() {
 
 gulp.task('scripts', function() {
     return gulp.src([
-            'app/libs/modernizr/modernizr.js',
+            'app/libs/modernizr-custom.js',
             'app/libs/jquery/dist/jquery.min.js',
             'node_modules/bootstrap/dist/js/bootstrap.min.js',
             'app/libs/lazysizes.min.js',
