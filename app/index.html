@@ -363,8 +363,8 @@
                             <a href="#" class="ClMyxDkqhze" data-toggle="modal" data-target="#big_video">
                                 <picture>
                                     <source type="image/webp" data-srcset="img/video_img_j.webp" />
-                                    <source type="image/png" data-srcset="img/video_img_j.png" />
-                                    <img data-src="img/video_img_j.png" alt="" class="lazyload wmjkCqPQOQg quFPzdVackB" />
+                                    <source type="image/jpeg" data-srcset="img/video_img_j.jpg" />
+                                    <img data-src="img/video_img_j.jpg" alt="" class="lazyload wmjkCqPQOQg quFPzdVackB" />
                                 </picture>
                                 <div class="button_video">
                                     <span></span>
@@ -2114,7 +2114,7 @@
     </section>
     <!-- ------------------- modals ------------------- -->
     <!-- Если убрать мышку с сайта - не уходите -->
-    <div class="modal fade" id="celloid" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade video" id="celloid" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="container-fluid">
                 <div class="row thightness">
@@ -3137,9 +3137,148 @@
     <div class="hidden"></div>
 
     <link rel="stylesheet" href="css/main.min.css">
+    <script>
+        const timerend = 7 * 60 * 1000;
+    </script>
+    <script src='js/scripts.min.js'></script>
+    <script>
+        $(function() {
+            $('.modal').on('show.bs.modal hide.bs.modal', function(e) {
+                $('html').toggleClass('modal-open');
+                var btn = $(e.relatedTarget);
+                var form_amount = $(e.target).find('[name="amount"]');
+                var form_count = $(e.target).find('[name="productCount"]');
+                form_amount.val(btn.data('amount'));
+                form_count.val(btn.data('count'));
+            });
+        });
 
-    <script src='js/scripts.min.js' async></script>
-    <script src='js/common.js' async></script>
+        $(".screen_wrap").mCustomScrollbar({
+            scrollButtons: {
+                enable: true
+            },
+            mouseWheelPixels: 300,
+            theme: "rounded",
+            scrollbarPosition: "outside"
+        });
+
+        /* modal when close site */
+        $(function() {
+            $(document).mouseleave(function(e) {
+                var cookie = getCookie('closeModal');
+                if (!cookie) {
+                    if (e.clientY < 0) {
+                        $('.modal').modal('hide');
+                        $('#celloid').modal('show');
+                        setCookie('closeModal', 'opened', 1);
+                    }
+                }
+            });
+        });
+
+        $(".arrs a").click(function(e) {
+            e.preventDefault();
+            var $this = $(this),
+                rel = $this.attr("rel"),
+                el = rel === "content-y" ? ".demo-y" : rel === "content-x" ? ".demo-x" : ".demo-yx",
+                data = $this.data("scroll-to"),
+                href = $this.attr("href").split(/#(.+)/)[1],
+                to = data ? $(el).find(".mCSB_container").find(data) : el === ".demo-yx" ? eval("(" + href + ")") : href,
+                output = $("#info > p code"),
+                outputTXTdata = el === ".demo-yx" ? data : "'" + data + "'",
+                outputTXThref = el === ".demo-yx" ? href : "'" + href + "'",
+                outputTXT = data ? "$('" + el + "').find('.mCSB_container').find(" + outputTXTdata + ")" : outputTXThref;
+            $(el).mCustomScrollbar("scrollTo", to);
+            output.text("$('" + el + "').mCustomScrollbar('scrollTo'," + outputTXT + ");");
+        });
+
+        /* modal for speakers */
+        $(function() {
+            var speakersModalId = '#olson';
+
+            function speakerModalChange(img, img_temp, name, descr, tags, whoiswho) {
+                var modal = $('.modal' + speakersModalId);
+                modal.find('.ZvihvfhJKbA').html('').append(img_temp);
+                modal.find('.UvUvNEQcByu').attr('data-src', img);
+                modal.find('.lucencies').text(name);
+                modal.find('input[name="form"]').val('Форма - Спикер ' + name + ' (pop-up)');
+                modal.find('.ravin').text(descr);
+                modal.find('.uninstanced .row').html(tags);
+                modal.find('.adipous').html('');
+                for (var i = 0; i < whoiswho.length; i++) {
+                    modal.find('.adipous').append('<p class="hitlerism">' + whoiswho[i].value + '</p>');
+                }
+            }
+            $('button[data-target="' + speakersModalId + '"]').on('click', function() {
+                var speaker = $(this).parents('.zIboLVArxtm'),
+                    speaker_img_temp = speaker.find('.ZvihvfhJKbA').html(),
+                    speaker_img = speaker.find('.UvUvNEQcByu')[0].src,
+                    speaker_name = speaker.find('.zuAteEXQXKC').text(),
+                    speaker_descr = speaker.find('.HeskajyjyoC').text(),
+                    speaker_tags = speaker.find('.mMEWOuHcjIL .row').html(),
+                    speaker_whoiswho = speaker.find('input[name="whoiswho"]');
+                speakerModalChange(speaker_img, speaker_img_temp, speaker_name, speaker_descr, speaker_tags, speaker_whoiswho);
+            });
+        });
+
+        $(document).ready(function() {
+
+            window.setTimeout(function() {
+                $('.ACeBVhdPRSq').addClass('load');
+            }, 50);
+
+
+            $('#big_video,#video1, #video2,#video3,#video4,#video5,#video6,#video7,#video8,#video9,#video10,#video11,#video12,#video13,#video14,#video15,#video16,#video17,#video18,#video19,#video20,#video21').on('shown.bs.modal', function() {
+                var video = $(this).find('.endognath').get(0).play();
+            }).on('hide.bs.modal', function() {
+                var video = $(this).find('.endognath').get(0).pause();
+            });
+
+
+
+            $(".js-q-fancybox").fancybox({
+                protect: true,
+                buttons: [
+                    'zoom',
+                    'close'
+                ]
+            });
+        });
+
+        $('.sec2 .btn_review').click(function() {
+            $('.hidden_block').toggleClass('active');
+        });
+
+        $('.sec2 .btn_review').click(function() {
+            if ($(".hidden_block").hasClass("active")) {
+                $(this).html('Скрыть ЕЩЕ 13 ОТЗЫВОВ');
+            } else {
+                $('html, body').animate({
+                    scrollTop: $('.sec2').offset().top
+                }, 500);
+                $(this).html('показать ЕЩЕ 13 ОТЗЫВОВ');
+            }
+        });
+
+
+
+        $('.btn_review2').click(function() {
+            $('.rev_block').toggleClass('active');
+
+            $(this).toggleClass('btn_active');
+        });
+
+        $('button.btn_review2').click(function() {
+            if ($(".rev_block").hasClass("active")) {
+                $(this).html('Скрыть все отзывы');
+            } else {
+                $('html, body').animate({
+                    scrollTop: $('.XcNEqAjaVgs').offset().top
+                }, 500);
+                $(this).html('Показать все отзывы');
+            }
+        });
+    </script>
 
 </body>
 

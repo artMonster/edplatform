@@ -813,9 +813,9 @@
                         <div class="item col">
                             <div class="img_wrap">
                                 <picture>
-                                    <source type="image/webp" data-srcset="img/more.webp" />
-                                    <source type="image/png" data-srcset="img/more.png" />
-                                    <img data-src="img/more.png" alt="" class="lazyload" />
+                                    <source type="image/webp" data-srcset="img/book6.webp" />
+                                    <source type="image/png" data-srcset="img/book6.png" />
+                                    <img data-src="img/book6.png" alt="" class="lazyload" />
                                 </picture>
                             </div>
                         </div>
@@ -1169,9 +1169,139 @@
 
 
     <link rel="stylesheet" href="css/main.min.css">
+    <script>
+        const timerend = 24 * 60 * 60 * 1000;
+    </script>
+    <script src='js/scripts.min.js'></script>
+    <script id="widget-wfp-script" language="javascript" type="text/javascript" src="//secure.wayforpay.com/server/pay-widget.js"></script>
+    <script>
+        var tickets = {
+            energySilver: 1,
+            energyGold: 1,
+            energyPlatinum: 1
+        };
 
-    <script src='js/scripts.min.js' async></script>
-    <script src='js/common.js' async></script>
+        function progress() {
+            var pers = 0;
+            var interval = setInterval(function() {
+                let t = pers++ + "%";
+                $(".pers").text(t);
+                $(".pl_l").css("width", t);
+                if (pers == 55) $(".pr span").css("color", "#fff");
+                if (pers > 80) clearInterval(interval);
+            }, 10);
+        }
+
+
+
+        $(function() {
+            progress();
+            prices();
+            ticketCounter();
+
+
+            $(".scroll_to").click(function(e) {
+                e.preventDefault();
+                $("html, body").animate({
+                        scrollTop: $($(this).attr("href")).offset().top
+                    },
+                    500,
+                    "linear"
+                );
+            });
+
+            // Custom JS
+        });
+
+        $('.book_aut_wrap .btn_review').click(function() {
+            $('.aut_wrap').toggleClass('active');
+        });
+
+        $('.book_aut_wrap .btn_review').click(function() {
+            if ($(".aut_wrap").hasClass("active")) {
+                $(this).html('скрыть бонусы');
+            } else {
+                $('html, body').animate({
+                    scrollTop: $('.book_aut_wrap').offset().top
+                }, 500);
+                $(this).html('ПОКАЗАТЬ ЕЩЕ 10 ШТ');
+            }
+        });
+
+
+
+        function prices() {
+            $('.pay_bilet').each(function() {
+                $(this).find('.pt .wsnw .old_price').attr('data-price', $(this).find('.pt .wsnw .old_price').text());
+                $(this).find('.pm .wsnw .new_price').attr('data-price', $(this).find('.pm .wsnw .new_price').text());
+            });
+        }
+
+        function ticketCounter() {
+            $(".act").click(function() {
+                var type = $(this).attr("data-type");
+                var action = $(this).attr("data-action");
+                var old_price = Number($(this).parents('.pay_bilet').find('.pt .wsnw .old_price').attr('data-price')),
+                    new_price = Number($(this).parents('.pay_bilet').find('.pm .wsnw .new_price').attr('data-price')),
+                    econ = $(this).parents('.pay_bilet').find('.econ'),
+                    discount = $(this).parents('.pay_bilet').find('.econ .discount'),
+                    price_then, price_now, price_before, price_after;
+
+
+
+                switch (action) {
+                    case "p":
+                        {
+                            tickets[type] = tickets[type] + 1;
+                            price_then = old_price * tickets[type];
+                            price_now = new_price * tickets[type];
+
+                            if (tickets[type] === 2) {
+                                price_before = price_now - (price_now * .05);
+                                econ.addClass('active');
+                            } else if (tickets[type] >= 3 && tickets[type] < 5) {
+                                price_before = price_now - (price_now * .05);
+                            } else if (tickets[type] >= 5) {
+                                price_before = price_now - (price_now * .1);
+                            } else {
+                                price_before = price_now;
+                                econ.removeClass('active');
+                            }
+                            break;
+                        }
+                    case "m":
+                        {
+                            tickets[type] = tickets[type] > 1 ? tickets[type] - 1 : 1;
+                            price_then = old_price * tickets[type];
+                            price_now = new_price * tickets[type];
+                            if (tickets[type] === 2) {
+                                price_before = price_now - (price_now * .05);
+                                econ.addClass('active');
+                            } else if (tickets[type] >= 3 && tickets[type] < 5) {
+                                price_before = price_now - (price_now * .05);
+                            } else if (tickets[type] >= 5) {
+                                price_before = price_now - (price_now * .1);
+                            } else {
+                                price_before = price_now;
+                                econ.removeClass('active');
+                            }
+                            break;
+                        }
+                    default:
+                        break;
+                }
+                discount.text(price_now);
+                $(this).parents('.pay_bilet').find('.pt .wsnw .old_price').text(price_then);
+                $(this).parents('.pay_bilet').find('.pm .wsnw .new_price').text(Math.round(price_before));
+                $(this).parents('.pay_bilet').find('[data-toggle="modal"]').attr('data-amount', Math.round(price_before));
+                $(this).parents('.pay_bilet').find('[data-toggle="modal"]').attr('data-count', tickets[type]);
+                $('.co[data-type="' + type + '"]').text(tickets[type]);
+
+            });
+        }
+    </script>
+
+
 
 </body>
 

@@ -71,7 +71,7 @@ gulp.task('scripts', function() {
             'app/libs/fancybox/jquery.fancybox.min.js',
             'app/libs/mscroll/jquery.mCustomScrollbar.concat.min.js',
             'app/libs/jquery.waterwheelCarousel.min.js',
-            //'app/js/common.js',
+            'app/js/common.js',
         ])
         .pipe(concat('scripts.min.js'))
         .pipe(uglify()) // Mifify js (opt.)
