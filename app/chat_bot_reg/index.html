@@ -24,7 +24,6 @@
     <!-- Custom Browsers Color End -->
     <link rel="preload" href="css/main.min.css" as="style">
     <link rel="preload" href="js/scripts.min.js" as="script">
-    <link rel="preload" href="js/common.js" as="script">
 
     <style type="text/css">
         .fade:not(.show) {
@@ -126,8 +125,8 @@
             var interval = setInterval(function() {
                 let t = pers++ + "%";
                 var ttt = pers++;
-                var tt = -(50 - (ttt * 1.4)) + '%'
-                $(".pers").html('<span class="perstext">готово на ' + t + ' </span>').css("transform", "translateX(" + tt + ")");
+                var tt = -(50 - (ttt * 1.3)) + '%'
+                $(".pers").html('<span class="perstext">готово на <b class="ml-2">' + t + '</b> </span>').css("transform", "translateX(" + tt + ")");
                 $(".perstext")
                 $(".pl_l").css("width", t);
                 if (pers > 50) {

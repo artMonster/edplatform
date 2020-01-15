@@ -24,14 +24,6 @@ $(window).on('load', function() {
                 if (!(data_val.split('.')[1] === 'webp' || data_val.split('.')[1] === 'svg')) {
                     var filename = data_val.split('.')[0] + '.webp';
                     $(this).attr('data-' + data_key, filename);
-                    console.log(filename);
-                    // $.get(filename).done(function(data, status) {
-                    //     console.log(status);
-                    //     $(this).attr('data-' + data_key, filename);
-                    // }).fail(function() {
-                    //     filename = data_val.replace('.webp', '.jpg');
-                    //     $(this).attr('data-' + data_key, filename);
-                    // });
                 }
             } else {
                 $(this).attr('data-' + data_key, data_val);
