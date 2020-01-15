@@ -39,27 +39,24 @@
             top: 0;
             left: 0;
             z-index: -1;
-            background-color: #23357f;
+            background-color: #F1F4FA;
         }
         
-        body>section,
-        body>header,
-        body>footer {
+        body>section {
             opacity: 0;
-            transition: opacity .3s ease;
         }
     </style>
 
 </head>
 
-<body class="reg_body">
-    <div class="container">
-        <section class="sec_reg row">
+<body class="reg_body" style="background-color: #F1F4FA !important;">
+    <section class="container">
+        <div class="sec_reg row">
             <div class="col-12">
                 <div class="pr_wr">
                     <div class="pr">
                         <div class="pl_l"></div>
-                        <span>готово на <strong class="pers">0%</strong></span>
+                        <span class="pers"></span>
                     </div>
                 </div>
             </div>
@@ -78,15 +75,15 @@
                         </div>
                         <div class="col-6 col-md-5 item text-center mb-3">
                             <div class="img_wrap"><img src="img/reg_img2.png" alt=""></div>
-                            <p>2 модели вебинарных <br>воронок с ROMI <br>от 300%+</p>
+                            <p>2 модели воронок</p>
                         </div>
                         <div class="col-6 col-md-5 item text-center mt-3">
                             <div class="img_wrap"><img src="img/reg_img3.png" alt=""></div>
-                            <p>Скидки на любую категорию билета</p>
+                            <p>Скидки на билеты</p>
                         </div>
                         <div class="col-6 col-md-5 item text-center mt-3">
                             <div class="img_wrap"><img src="img/reg_img4.png" alt=""></div>
-                            <p>Доступ к закрытому чату EDPLATFORMA CLUB</p>
+                            <p>Доступ к закрытому чату</p>
                         </div>
                     </div>
                 </div>
@@ -98,8 +95,8 @@
                     <a href="#" class="btn_mes" id="btn_mes_me"><span>Получить бонусы в Messenger</span></a>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 
 
 
@@ -128,11 +125,15 @@
             var pers = 0;
             var interval = setInterval(function() {
                 let t = pers++ + "%";
-                $(".pers").text(t);
+                var ttt = pers++;
+                var tt = -(50 - (ttt * 1.4)) + '%'
+                $(".pers").html('<span class="perstext">готово на ' + t + ' </span>').css("transform", "translateX(" + tt + ")");
+                $(".perstext")
                 $(".pl_l").css("width", t);
-                if (pers == 55) $(".pr span").css("color", "#fff");
-                if (pers > 80) clearInterval(interval);
-            }, 10);
+                if (pers > 50) {
+                    clearInterval(interval)
+                };
+            }, 30);
         }
 
         progress();
