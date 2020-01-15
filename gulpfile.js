@@ -87,19 +87,19 @@ gulp.task('code', function() {
 
 gulp.task('webpImages', function() {
     (async() => {
-        const imageminWebp = await imagemin(['app/img/src/*.{jpg,png}'], 'app/img', { use: [imageminWebptran({ quality: 95 })] }).then(() => {
+        const imageminWebp = await imagemin(['app/img/src/*.{jpg,png}'], 'app/img', { use: [imageminWebptran({ quality: 70 })] }).then(() => {
             console.log('webp -- [ ok ]');
         });
+        /*
+                const imageminJpg = await imagemin(['app/img/src/*.jpg'], 'app/img', { use: [imageminJpegtran()] }).then(() => {
+                    console.log('jpg -- [ ok ]');
+                });
 
-        const imageminJpg = await imagemin(['app/img/src/*.jpg'], 'app/img', { use: [imageminJpegtran()] }).then(() => {
-            console.log('jpg -- [ ok ]');
-        });
 
-
-        const imageminPng = await imagemin(['app/img/src/*.png'], 'app/img', { use: [imageminPngquant()] }).then(() => {
-            console.log('png -- [ ok ]');
-        });
-
+                const imageminPng = await imagemin(['app/img/src/*.png'], 'app/img', { use: [imageminPngquant()] }).then(() => {
+                    console.log('png -- [ ok ]');
+                });
+        */
     })();
 });
 

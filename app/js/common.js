@@ -11,19 +11,29 @@ $(window).on('load', function() {
     }
 
     var iswebp = Modernizr.webp;
-    var prefix = '';
+    var prefix = 'png';
 
     if (!iswebp) {
         var data_key, data_val;
         $('picture source, picture img, [data-bgurl]').each(function() {
             data_key = Object.keys($(this).data())[0];
             data_val = $(this).attr('data-' + data_key);
+
             if ($(this).attr('data-bgurl')) {
+                var filename = data_val.replace('.webp', '.' + prefix);
                 if (!iswebp) {
-                    data_val = data_val.replace('.webp', '.jpg');
+                    var getf = $.get(filename).done(
+                        function(data, status) {
+                            if (!status === 'success') {
+                                filename = data_val.replace('.webp', '.jpg');
+                                $(this).attr('data-' + data_key, data_val);
+                            }
+                        });
                 }
+            } else {
+                $(this).attr('data-' + data_key, data_val);
             }
-            $(this).attr('data-' + data_key, data_val);
+
         });
     }
 
@@ -146,171 +156,160 @@ $(document).ready(function() {
 
 
     }, 1000);
+});
+/* ------------------- forms api ------------------- */
+$(function() {
 
-    /* ------------------- forms api ------------------- */
-    $(function() {
+    function getURLParameter(name) {
+        return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || '';
+    }
 
-        function getURLParameter(name) {
-            return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || '';
+    $('form').submit(function(event) {
+        event.preventDefault();
+
+        var form = $(this),
+            name = form.find('input[name="name"]').val(),
+            email = form.find('input[name="email"]') ? form.find('input[name="email"]').val() : '',
+            phone = form.find('input[name="phone"]').val(),
+            country = form.find('.iti__selected-flag').attr('title'),
+            form_name = form.find('input[name="form"]').val(),
+            productCount = form.find('input[name="productCount"]').val(),
+            amount = form.find('input[name="amount"]').val(),
+            productPrice = form.find('input[name="productPrice"]').val();
+
+        var page_url = $('body > input[name="page_url"]').val(),
+            ip = $('body > input[name="ip"]').val(),
+            utm_campaign = getURLParameter('utm_campaign') ? getURLParameter('utm_campaign') : localStorage.utm_campaign,
+            utm_medium = getURLParameter('utm_medium') ? getURLParameter('utm_medium') : localStorage.utm_medium,
+            utm_source = getURLParameter('utm_source') ? getURLParameter('utm_source') : localStorage.utm_source,
+            utm_content = getURLParameter('utm_content') ? getURLParameter('utm_content') : localStorage.utm_content,
+            utm_term = getURLParameter('utm_term') ? getURLParameter('utm_term') : localStorage.utm_term,
+            referer = $('body > input[name="referer"]').val(),
+            device = $('body > input[name="device"]').val(),
+            thx = form.find('input[name="thx"]').val(),
+            mailerlite = 'false';
+
+        var response_id = false;
+
+
+
+        var gUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfweoBQjcw_o0XXhXp-PXH5BTk69ujKDY7otT161-CDzdrMnA/formResponse';
+
+        if (form_name === 'Online' ||
+            form_name === 'Silver' ||
+            form_name === 'Gold' ||
+            form_name === 'Platinum') {
+            thx = false;
+            gUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfpuuS5b_B_v7nOfeZuB9GbNY_SZdjq2s9ksxfXk9CcMWQZ0w/formResponse';
         }
 
-        $('form').submit(function(event) {
-            event.preventDefault();
+        $.ajax({
+            url: 'app/api.php',
+            type: 'POST',
+            data: {
+                name: name,
+                email: email,
+                phone: phone,
+                country: country,
+                form: form_name,
+                productCount: productCount,
+                amount: amount,
+                productPrice: productPrice,
+                ip: ip,
+                utm_campaign: utm_campaign,
+                utm_medium: utm_medium,
+                utm_source: utm_source,
+                utm_content: utm_content,
+                utm_term: utm_term,
+                referer: referer,
+                device: device,
+                page_url: page_url,
+                mailerlite: mailerlite
+            },
+            beforeSend: function() {
+                form.find('button[type="submit"]').attr('disabled', 'disabled');
+                $('body').addClass('loading');
+            },
+            success: function(response) {
+                var response = JSON.parse(response);
+                var resp = JSON.parse(response.data);
 
-            var form = $(this),
-                name = form.find('input[name="name"]').val(),
-                email = form.find('input[name="email"]') ? form.find('input[name="email"]').val() : '',
-                phone = form.find('input[name="phone"]').val(),
-                country = form.find('.iti__selected-flag').attr('title'),
-                form_name = form.find('input[name="form"]').val(),
-                productCount = form.find('input[name="productCount"]').val(),
-                amount = form.find('input[name="amount"]').val(),
-                productPrice = form.find('input[name="productPrice"]').val();
+                localStorage.setItem("name", name);
+                localStorage.setItem("email", email);
+                localStorage.setItem("phone", phone);
+                localStorage.setItem("country", country);
+                localStorage.setItem("referer", referer);
+                localStorage.setItem("utm_campaign", utm_campaign);
+                localStorage.setItem("utm_medium", utm_medium);
+                localStorage.setItem("utm_source", utm_source);
+                localStorage.setItem("utm_content", utm_content);
+                localStorage.setItem("utm_term", utm_term);
+                localStorage.setItem("response_id", resp.id);
 
-            var page_url = $('body > input[name="page_url"]').val(),
-                ip = $('body > input[name="ip"]').val(),
-                utm_campaign = getURLParameter('utm_campaign') ? getURLParameter('utm_campaign') : localStorage.utm_campaign,
-                utm_medium = getURLParameter('utm_medium') ? getURLParameter('utm_medium') : localStorage.utm_medium,
-                utm_source = getURLParameter('utm_source') ? getURLParameter('utm_source') : localStorage.utm_source,
-                utm_content = getURLParameter('utm_content') ? getURLParameter('utm_content') : localStorage.utm_content,
-                utm_term = getURLParameter('utm_term') ? getURLParameter('utm_term') : localStorage.utm_term,
-                referer = $('body > input[name="referer"]').val(),
-                device = $('body > input[name="device"]').val(),
-                thx = form.find('input[name="thx"]').val(),
-                mailerlite = 'false';
+                if (form.parents('.thightness').find('.shaster.d-none').length !== 0) {
+                    form.parents('.beadrolls').toggleClass('d-none');
+                    form.parents('.thightness').find('.shaster').toggleClass('d-none');
+                } else {
+                    var gDataFIelds = {
+                        'entry.1378648537': name,
+                        'entry.906441403': phone,
+                        'entry.1561585642': email,
+                        'entry.2147320007': resp.id,
+                        'entry.394938287': form_name,
+                        'entry.460216031': utm_source,
+                        'entry.212170628': utm_content,
+                        'entry.1079784546': utm_campaign,
+                        'entry.922426768': utm_term,
+                        'entry.946055790': utm_medium,
+                        'entry.1304558152': country,
+                        'entry.1739428933': resp.message ? resp.message : resp.status,
+                    };
 
-            var response_id = false;
-
-
-
-            var gUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfweoBQjcw_o0XXhXp-PXH5BTk69ujKDY7otT161-CDzdrMnA/formResponse';
-
-            if (form_name === 'Online' ||
-                form_name === 'Silver' ||
-                form_name === 'Gold' ||
-                form_name === 'Platinum') {
-                thx = false;
-                gUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfpuuS5b_B_v7nOfeZuB9GbNY_SZdjq2s9ksxfXk9CcMWQZ0w/formResponse';
-            }
-
-            $.ajax({
-                url: 'app/api.php',
-                type: 'POST',
-                data: {
-                    name: name,
-                    email: email,
-                    phone: phone,
-                    country: country,
-                    form: form_name,
-                    productCount: productCount,
-                    amount: amount,
-                    productPrice: productPrice,
-                    ip: ip,
-                    utm_campaign: utm_campaign,
-                    utm_medium: utm_medium,
-                    utm_source: utm_source,
-                    utm_content: utm_content,
-                    utm_term: utm_term,
-                    referer: referer,
-                    device: device,
-                    page_url: page_url,
-                    mailerlite: mailerlite
-                },
-                beforeSend: function() {
-                    form.find('button[type="submit"]').attr('disabled', 'disabled');
-                    $('body').addClass('loading');
-                },
-                success: function(response) {
-                    var response = JSON.parse(response);
-                    var resp = JSON.parse(response.data);
-
-                    localStorage.setItem("name", name);
-                    localStorage.setItem("email", email);
-                    localStorage.setItem("phone", phone);
-                    localStorage.setItem("country", country);
-                    localStorage.setItem("referer", referer);
-                    localStorage.setItem("utm_campaign", utm_campaign);
-                    localStorage.setItem("utm_medium", utm_medium);
-                    localStorage.setItem("utm_source", utm_source);
-                    localStorage.setItem("utm_content", utm_content);
-                    localStorage.setItem("utm_term", utm_term);
-                    localStorage.setItem("response_id", resp.id);
-
-                    if (form.parents('.thightness').find('.shaster.d-none').length !== 0) {
-                        form.parents('.beadrolls').toggleClass('d-none');
-                        form.parents('.thightness').find('.shaster').toggleClass('d-none');
-                    } else {
-                        var gDataFIelds = {
-                            'entry.1378648537': name,
-                            'entry.906441403': phone,
-                            'entry.1561585642': email,
-                            'entry.2147320007': resp.id,
-                            'entry.394938287': form_name,
-                            'entry.460216031': utm_source,
-                            'entry.212170628': utm_content,
-                            'entry.1079784546': utm_campaign,
-                            'entry.922426768': utm_term,
-                            'entry.946055790': utm_medium,
-                            'entry.1304558152': country,
-                            'entry.1739428933': resp.message ? resp.message : resp.status,
-                        };
-
-                        $.ajax({
-                            type: "POST",
-                            url: gUrl,
-                            dataType: 'xml',
-                            data: gDataFIelds,
-                            statusCode: {
-                                0: function() {
-                                    form.find('button[type="submit"]').removeAttr('disabled');
-                                    $('body').removeClass('loading');
-                                    if (thx) {
-                                        window.location.href = thx;
-                                    } else {
-                                        var wayforpay = new Wayforpay();
-                                        var pay = function() {
-                                            wayforpay.run({
-                                                    merchantAccount: "pavelgonza_com",
-                                                    merchantDomainName: "http://pavelgonza.com",
-                                                    authorizationType: "SimpleSignature",
-                                                    merchantSignature: response.hash,
-                                                    orderReference: resp.id + '_' + response.time,
-                                                    orderDate: response.time,
-                                                    amount: amount,
-                                                    currency: "UAH",
-                                                    productName: form_name,
-                                                    productPrice: productPrice,
-                                                    productCount: productCount,
-                                                    clientFirstName: name,
-                                                    clientLastName: name,
-                                                    clientEmail: email,
-                                                    clientPhone: phone,
-                                                },
-                                                function(response) {
-                                                    //console.log(response)
-                                                },
-                                                function(response) {
-                                                    // on declined
-                                                    //console.log(response)
-                                                },
-                                                function(response) {
-                                                    // on pending or in processing
-                                                    //console.log(response)
-                                                }
-                                            );
-                                        }
-                                        pay();
+                    $.ajax({
+                        type: "POST",
+                        url: gUrl,
+                        dataType: 'xml',
+                        data: gDataFIelds,
+                        statusCode: {
+                            0: function() {
+                                form.find('button[type="submit"]').removeAttr('disabled');
+                                $('body').removeClass('loading');
+                                if (thx) {
+                                    window.location.href = thx;
+                                } else {
+                                    var wayforpay = new Wayforpay();
+                                    var pay = function() {
+                                        wayforpay.run({
+                                            merchantAccount: "pavelgonza_com",
+                                            merchantDomainName: "http://pavelgonza.com",
+                                            authorizationType: "SimpleSignature",
+                                            merchantSignature: response.hash,
+                                            orderReference: resp.id + '_' + response.time,
+                                            orderDate: response.time,
+                                            amount: amount,
+                                            currency: "UAH",
+                                            productName: form_name,
+                                            productPrice: productPrice,
+                                            productCount: productCount,
+                                            clientFirstName: name,
+                                            clientLastName: name,
+                                            clientEmail: email,
+                                            clientPhone: phone,
+                                        });
                                     }
+                                    pay();
                                 }
                             }
-                        });
-                    }
-                },
-                error: function(response) {
-                    form.html('<p style="text-align:center;">Ошибка отправки сообщения</p>');
-                    $('body').removeClass('loading');
+                        }
+                    });
                 }
-            });
-        });
-    });
+            },
+            error: function(response) {
+                form.html('<p style="text-align:center;">Ошибка отправки сообщения</p>');
+                $('body').removeClass('loading');
+            }
+        })
+    })
 });
+
+/* -- end -- */
