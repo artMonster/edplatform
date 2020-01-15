@@ -11,24 +11,27 @@ $(window).on('load', function() {
     }
 
     var iswebp = Modernizr.webp;
-    var prefix = 'png';
+    var prefix = 'jpg';
 
-    if (!iswebp) {
+    if (iswebp) {
         var data_key, data_val;
         $('picture source, picture img, [data-bgurl]').each(function() {
             data_key = Object.keys($(this).data())[0];
             data_val = $(this).attr('data-' + data_key);
 
             if ($(this).attr('data-bgurl')) {
-                var filename = data_val.replace('.webp', '.' + prefix);
-                if (!iswebp) {
-                    var getf = $.get(filename).done(
-                        function(data, status) {
-                            if (!status === 'success') {
-                                filename = data_val.replace('.webp', '.jpg');
-                                $(this).attr('data-' + data_key, data_val);
-                            }
-                        });
+
+                if (!(data_val.split('.')[1] === 'webp' || data_val.split('.')[1] === 'svg')) {
+                    var filename = data_val.split('.')[0] + '.webp';
+                    $(this).attr('data-' + data_key, filename);
+                    console.log(filename);
+                    // $.get(filename).done(function(data, status) {
+                    //     console.log(status);
+                    //     $(this).attr('data-' + data_key, filename);
+                    // }).fail(function() {
+                    //     filename = data_val.replace('.webp', '.jpg');
+                    //     $(this).attr('data-' + data_key, filename);
+                    // });
                 }
             } else {
                 $(this).attr('data-' + data_key, data_val);
