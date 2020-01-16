@@ -159,11 +159,24 @@ $(function() {
         return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || '';
     }
 
+    function form_spiner() {
+        return spiner_template = '<div class="ed-spiner"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 590 590"><path d="M295,590a70,70,0,0,1,0-140c85.47,0,155-69.53,155-155S380.47,140,295,140,140,209.53,140,295A70,70,0,0,1,0,295,295.06,295.06,0,0,1,566.79,180.15,294.93,294.93,0,0,1,295,590Z"/><circle class="cls-1" cx="295" cy="295" r="70"/></svg></div>';
+    }
+
     $('form').submit(function(event) {
+
         event.preventDefault();
 
+
         var form = $(this),
-            name = form.find('input[name="name"]').val(),
+            formbtn = form.find('button[type="submit"]');
+
+        formbtn.attr('disabled', true);
+        form.addClass('send');
+
+        form.append(form_spiner());
+
+        var name = form.find('input[name="name"]').val(),
             email = form.find('input[name="email"]') ? form.find('input[name="email"]').val() : '',
             phone = form.find('input[name="phone"]').val(),
             country = form.find('.iti__selected-flag').attr('title'),
@@ -185,6 +198,8 @@ $(function() {
             mailerlite = 'false';
 
         var response_id = false;
+
+
 
 
 
@@ -222,8 +237,7 @@ $(function() {
                 mailerlite: mailerlite
             },
             beforeSend: function() {
-                form.find('button[type="submit"]').attr('disabled', 'disabled');
-                $('body').addClass('loading');
+
             },
             success: function(response) {
                 var response = JSON.parse(response);
@@ -267,8 +281,9 @@ $(function() {
                         data: gDataFIelds,
                         statusCode: {
                             0: function() {
-                                form.find('button[type="submit"]').removeAttr('disabled');
-                                $('body').removeClass('loading');
+                                formbtn.attr('disabled', false);
+                                form.removeClass('send');
+                                $('body').find('.modal.fade.show').modal('hide');
                                 if (thx) {
                                     window.location.href = thx;
                                 } else {
@@ -301,7 +316,7 @@ $(function() {
             },
             error: function(response) {
                 form.html('<p style="text-align:center;">Ошибка отправки сообщения</p>');
-                $('body').removeClass('loading');
+                form.removeClass('send');
             }
         })
     })
