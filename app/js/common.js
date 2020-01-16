@@ -32,19 +32,18 @@ $(window).on('load', function() {
         });
     }
 
-    $('img').addClass('lazyload');
+
 
     $('[data-bgurl]').each(function() {
         $(this).css('background-image', 'url("' + $(this).attr('data-bgurl') + '")');
     });
 
     window.setTimeout(function() {
+        $('img').addClass('lazyload');
         $('body').addClass('load');
     }, 100);
 
 });
-
-/* ------------------- cookies ------------------- */
 
 function getCookie(c_name) {
     var i, x, y, ARRcookies = document.cookie.split(";");
@@ -65,11 +64,100 @@ function setCookie(c_name, value, exdays) {
     document.cookie = c_name + "=" + c_value;
 }
 
-$(document).ready(function() {
+(function() {
+
+    var coki = getCookie('timerLand');
+    var end;
+
+    if (coki) {
+        end = coki;
+    } else {
+        end = new Date();
+        setCookie('timerLand', end.getTime(), 14)
+    }
+
+    var _milisec = 10,
+        _second = _milisec * 100,
+        _minute = _second * 60,
+        _hour = _minute * 60,
+        _day = _hour * 24;
+
+    var parentElem = $('.timer_row, .t'),
+        day = parentElem.find('.timer_col__days .timer_p__num'),
+        hour = parentElem.find('.timer_col__hours .timer_p__num'),
+        min = parentElem.find('.timer_col__minutes .timer_p__num'),
+        sec = parentElem.find('.timer_col__seconds .timer_p__num'),
+        mili = parentElem.find('.timer_col__milliseconds .timer_p__num');
+
     function getURLParameter(name) {
         var res = decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || '';
         return res ? res : ''
     }
+
+
+
+
+
+    function showRemaining() {
+
+        var now = new Date();
+        var distance = end - now + timerend;
+
+        if (distance < 0) {
+
+            day.text("00");
+            hour.text("00");
+            min.text("00");
+            sec.text("00");
+            mili.text("00");
+
+            clearInterval(intervalTimer);
+            return;
+        }
+
+        var days = Math.floor(distance / _day);
+        var hours = Math.floor((distance % _day) / _hour);
+        var minutes = Math.floor((distance % _hour) / _minute);
+        var seconds = Math.floor((distance % _minute) / _second);
+        var miliseconds = Math.floor((distance % _second) / _milisec);
+
+        if (seconds < 10) seconds = '0' + seconds;
+        if (minutes < 10) minutes = '0' + minutes;
+        if (hours < 10) hours = '0' + hours;
+        if (days < 10) days = '0' + days;
+
+        day.text(days);
+        hour.text(hours);
+        min.text(minutes);
+        sec.text(seconds);
+        mili.text(miliseconds);
+    }
+
+    var intervalTimer = setInterval(showRemaining, 10);
+
+    /* ------------------- cookies ------------------- */
+
+
+
+    $('input[type="tel"]').intlTelInput({
+        allowExtensions: false,
+        autoFormat: true,
+        autoHideDialCode: false,
+        autoPlaceholder: false,
+        defaultCountry: "auto",
+        geoIpLookup: function(callback) {
+            $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
+                var countryCode = (resp && resp.country) ? resp.country : "";
+                callback(countryCode);
+            });
+        },
+        nationalMode: false,
+        numberType: 'MOBILE',
+        preferredCountries: ['ua', 'ru', 'by', 'us'],
+        utilsScript: 'js/utils.js'
+    });
+
+
 
     var utm = {
         campaign: getURLParameter('utm_campaign'),
@@ -85,105 +173,111 @@ $(document).ready(function() {
     if (utm.content) localStorage.setItem("utm_content", utm.content);
     if (utm.term) localStorage.setItem("utm_term", utm.term);
 
-    window.setTimeout(function() {
-        $('[type=tel]').intlTelInput({
-            allowExtensions: false,
-            autoFormat: true,
-            autoHideDialCode: true,
-            autoPlaceholder: true,
-            defaultCountry: "auto",
-            geoIpLookup: function(callback) {
-                $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
-                    var countryCode = (resp && resp.country) ? resp.country : "";
-                    callback(countryCode);
-                });
-            },
-            nationalMode: false,
-            numberType: 'MOBILE',
-            preferredCountries: ['ua', 'ru', 'by', 'us']
-        });
+    var input = $('input, textarea');
+    var select = $('select');
+    var form = $('form');
+    var patternHidden = /(\D)+[^0-9]{1,}/i;
+    var patternText = /(\D)+[^0-9]{1,}/i;
+    var patternEmail = /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i;
+    var patternTel = /([+()0-9 ]){9,18}/i;
+    var errorFieldsMessage = {
+        text: ' Имя',
+        tel: ' Телефон',
+        email: ' Электронная почта',
+        checkbox: ' Подтверждение согласия',
+    };
 
-        $(function() {
+    $("[data-btn]").click(function() {
+        $('form').attr('data-id', $(this).data('btn'));
+    });
 
-            var coki = getCookie('timerLand');
-            //coki = false
-            var end;
+    function getURLParameter(name) {
+        return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || '';
+    }
 
-            if (coki) {
-                end = coki;
-            } else {
-                end = new Date();
-                setCookie('timerLand', end.getTime(), 14)
-            }
+    function validationsField(field) {
 
-            var _milisec = 10;
-            var _second = _milisec * 100;
-            var _minute = _second * 60;
-            var _hour = _minute * 60;
-            var _day = _hour * 24;
+        var fieldValue = field[0].value;
+        var fieldType = field[0].type;
 
-            var parentElem = $('.timer_row, .t'),
-                day = parentElem.find('.timer_col__days .timer_p__num'),
-                hour = parentElem.find('.timer_col__hours .timer_p__num'),
-                min = parentElem.find('.timer_col__minutes .timer_p__num'),
-                sec = parentElem.find('.timer_col__seconds .timer_p__num'),
-                mili = parentElem.find('.timer_col__milliseconds .timer_p__num');
-
-            function showRemaining() {
-                var now = new Date();
-                var distance = end - now + timerend;
-
-                if (distance < 0) {
-
-                    day.text("00");
-                    hour.text("00");
-                    min.text("00");
-                    sec.text("00");
-                    mili.text("00");
-
-                    clearInterval(intervalTimer);
-                    return;
-                }
-
-                var days = Math.floor(distance / _day);
-                var hours = Math.floor((distance % _day) / _hour);
-                var minutes = Math.floor((distance % _hour) / _minute);
-                var seconds = Math.floor((distance % _minute) / _second);
-                var miliseconds = Math.floor((distance % _second) / _milisec);
-
-                if (seconds < 10) seconds = '0' + seconds;
-                if (minutes < 10) minutes = '0' + minutes;
-                if (hours < 10) hours = '0' + hours;
-                if (days < 10) days = '0' + days;
-
-                day.text(days);
-                hour.text(hours);
-                min.text(minutes);
-                sec.text(seconds);
-                mili.text(miliseconds);
-            };
-
-            var intervalTimer = setInterval(showRemaining, 10);
-        });
-
-
-
-    }, 1000);
-
-    /* ------------------- forms api ------------------- */
-    $(function() {
-
-        function form_spiner() {
-            return spiner_template = '<div class="ed-spiner"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 590 590"><path d="M295,590a70,70,0,0,1,0-140c85.47,0,155-69.53,155-155S380.47,140,295,140,140,209.53,140,295A70,70,0,0,1,0,295,295.06,295.06,0,0,1,566.79,180.15,294.93,294.93,0,0,1,295,590Z"/><circle class="cls-1" cx="295" cy="295" r="70"/></svg></div>';
+        if (fieldType == 'email') {
+            var pattern = patternEmail;
+        } else if (fieldType == 'text' || fieldType == 'textarea') {
+            var pattern = patternText;
+        } else if (fieldType == 'tel') {
+            var pattern = patternTel;
+        } else if (fieldType == 'hidden') {
+            return true;
+        } else if (fieldType == 'checkbox') {
+            return true;
         }
+        return pattern.test(fieldValue);
+    }
 
-        $('form').submit(function(event) {
+    function validationsForm(form) {
 
-            event.preventDefault();
+        var fields = form.find('input:not([type=radio])');
+        var errorAlert = form.find('.alert');
+        var errorTags = form.find('.error-message');
+        var numberIsValid = 0;
+        var errorMessage = [];
+
+        fields.each(function() {
+            var field = $(this);
+            var errorFieldType = field[0].type;
+            if (validationsField(field)) {
+                field.removeClass('is-invalid').addClass('is-valid');
+                numberIsValid++;
+            } else {
+                if (errorFieldType == 'text') {
+                    errorMessage.push(errorFieldsMessage.text);
+                } else if (errorFieldType == 'tel') {
+                    errorMessage.push(errorFieldsMessage.tel);
+                } else if (errorFieldType == 'email') {
+                    errorMessage.push(errorFieldsMessage.email);
+                } else if (errorFieldType == 'checkbox') {
+                    errorMessage.push(errorFieldsMessage.checkbox);
+                }
+                field.addClass('is-invalid');
+            }
+        });
+
+        if (errorMessage.length > 0) {
+            errorTags.html('<div style="margin: 1rem 0;" class="alert alert-danger" role="alert"><span class="alert-heading small">' + '<small>Ошибка: </small></span><small><b> ' + errorMessage + ' </b></small></div>');
+        }
+        return fields.length == numberIsValid;
+
+    }
+
+    function keyupEventOff(e) {
+        if (e.target.value === '') {
+            $(this).removeClass('active');
+        }
+    }
+
+    function keyupEvent(e) {
+
+        var field = $(this);
+        field.addClass('active');
+
+        var errorTags = field.closest('form').find('.error-message');
+        errorTags.html('');
+
+        field.hasClass('is-invalid') ? field.removeClass('is-invalid') : false;
+        validationsField(field) ? field.addClass('is-valid') : field.removeClass('is-valid');
+    }
+
+    function form_spiner() {
+        return spiner_template = '<div class="ed-spiner"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 590 590"><path d="M295,590a70,70,0,0,1,0-140c85.47,0,155-69.53,155-155S380.47,140,295,140,140,209.53,140,295A70,70,0,0,1,0,295,295.06,295.06,0,0,1,566.79,180.15,294.93,294.93,0,0,1,295,590Z"/><circle class="cls-1" cx="295" cy="295" r="70"/></svg></div>';
+    }
+
+    function submitForm(event) {
+
+        var form = $(this),
+            formbtn = form.find('button[type="submit"]');
 
 
-            var form = $(this),
-                formbtn = form.find('button[type="submit"]');
+        if (validationsForm(form)) {
 
             formbtn.attr('disabled', true);
             form.append(form_spiner()).addClass('send');
@@ -235,13 +329,11 @@ $(document).ready(function() {
                     utm_source: utm_source,
                     utm_content: utm_content,
                     utm_term: utm_term,
-                    referer: referer,
-                    device: device,
                     page_url: page_url,
-                    mailerlite: mailerlite
+                    mailerlite: mailerlite,
                 },
-                beforeSend: function() {
-
+                beforeSend: function(e) {
+                    // console.log(e);
                 },
                 success: function(response) {
                     var response = JSON.parse(response);
@@ -283,6 +375,7 @@ $(document).ready(function() {
                                         window.location.href = thx;
                                     } else {
                                         formbtn.attr('disabled', false);
+                                        form.find('.ed-spiner').remove();
                                         form.removeClass('send');
                                         $('body').find('.modal.fade.show').modal('hide');
 
@@ -317,8 +410,11 @@ $(document).ready(function() {
                     form.html('<p style="text-align:center;">Ошибка отправки сообщения</p>');
                     form.removeClass('send');
                 }
-            })
-        })
-    });
-});
-/* -- end -- */
+            }); /* ---- ajax ---- */
+        }
+    }
+
+    input.keyup(keyupEvent).focusout(keyupEventOff).change(keyupEvent);
+    form.submit(submitForm);
+
+})();

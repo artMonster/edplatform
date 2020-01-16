@@ -68,7 +68,7 @@ gulp.task('scripts', function() {
             'node_modules/bootstrap/dist/js/bootstrap.min.js',
             'app/libs/lazysizes.min.js',
             'app/libs/intlTelInput/intlTelInput-jquery.min.js',
-            'app/libs/fancybox/jquery.fancybox.min.js',
+            //'app/libs/fancybox/jquery.fancybox.min.js',
             'app/libs/mscroll/jquery.mCustomScrollbar.concat.min.js',
             'app/libs/jquery.waterwheelCarousel.min.js',
             'app/js/common.js',

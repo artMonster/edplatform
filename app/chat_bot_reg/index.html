@@ -16,7 +16,14 @@
     <link rel="icon" href="favicon/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon-180x180.png">
 
-    <meta property="og:image" content="og-min.png">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://edplatforma.com" />
+    <meta property="og:title" content="ПОДТВЕРДИ УЧАСТИЕ В EDPLATFORMA" />
+    <meta property="og:image" content="https://edplatforma.com/og-min.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="314" />
+    <meta property="og:description" content="EDPLATFORMA — Ключевой форум страны по запуску и продвижению образовательных проектов" />
     <!-- Template Basic Images End -->
 
     <!-- Custom Browsers Color Start -->
@@ -55,7 +62,7 @@
                 <div class="pr_wr">
                     <div class="pr">
                         <div class="pl_l"></div>
-                        <span class="pers"></span>
+                        <div class="pers"></div>
                     </div>
                 </div>
             </div>
@@ -124,15 +131,13 @@
             var pers = 0;
             var interval = setInterval(function() {
                 let t = pers++ + "%";
-                var ttt = pers++;
-                var tt = -(50 - (ttt * 1.3)) + '%'
-                $(".pers").html('<span class="perstext">готово на <b class="ml-2">' + t + '</b> </span>').css("transform", "translateX(" + tt + ")");
-                $(".perstext")
-                $(".pl_l").css("width", t);
+                let p = (pers++) + "%";
+                $(".pers").html('<span class="perstext">готово на <b class="ml-1 mr-2">' + t + '</b> </span>').css("margin-left", p);
+                $(".pl_l").css("width", p);
                 if (pers > 50) {
                     clearInterval(interval)
                 };
-            }, 30);
+            }, 50);
         }
 
         progress();
