@@ -1304,6 +1304,31 @@
             energyPlatinum: 1
         };
 
+        $(document).ready(function() {
+
+
+
+            window.setTimeout(function() {
+
+                $('input[type="tel"]').intlTelInput({
+                    allowExtensions: false,
+                    autoFormat: true,
+                    autoHideDialCode: false,
+                    autoPlaceholder: false,
+                    defaultCountry: "auto",
+                    geoIpLookup: function(callback) {
+                        $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
+                            var countryCode = (resp && resp.country) ? resp.country : "";
+                            callback(countryCode);
+                        });
+                    },
+                    nationalMode: false,
+                    numberType: 'MOBILE',
+                    preferredCountries: ['ua', 'ru', 'by', 'us'],
+                });
+            }, 50);
+        });
+
         function progress() {
             var pers = 0;
             var interval = setInterval(function() {
