@@ -137,28 +137,6 @@ function setCookie(c_name, value, exdays) {
 
     /* ------------------- cookies ------------------- */
 
-
-
-    $('input[type="tel"]').intlTelInput({
-        allowExtensions: false,
-        autoFormat: true,
-        autoHideDialCode: false,
-        autoPlaceholder: false,
-        defaultCountry: "auto",
-        geoIpLookup: function(callback) {
-            $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
-                var countryCode = (resp && resp.country) ? resp.country : "";
-                callback(countryCode);
-            });
-        },
-        nationalMode: false,
-        numberType: 'MOBILE',
-        preferredCountries: ['ua', 'ru', 'by', 'us'],
-        utilsScript: 'js/utils.js'
-    });
-
-
-
     var utm = {
         campaign: getURLParameter('utm_campaign'),
         medium: getURLParameter('utm_medium'),
@@ -167,7 +145,7 @@ function setCookie(c_name, value, exdays) {
         term: getURLParameter('utm_term')
     }
 
-    if (utm.campaign) localStorage.setItem("utm_campaign", utm.campaig);
+    if (utm.campaign) localStorage.setItem("utm_campaign", utm.campaign);
     if (utm.medium) localStorage.setItem("utm_medium", utm.medium);
     if (utm.source) localStorage.setItem("utm_source", utm.source);
     if (utm.content) localStorage.setItem("utm_content", utm.content);
@@ -292,7 +270,7 @@ function setCookie(c_name, value, exdays) {
                 productPrice = form.find('input[name="productPrice"]').val();
 
             var page_url = window.location.href,
-                utm_campaign = utm.campaig ? utm.campaig : localStorage.utm_campaign,
+                utm_campaign = utm.campaign ? utm.campaign : localStorage.utm_campaign,
                 utm_medium = utm.medium ? utm.medium : localStorage.utm_medium,
                 utm_source = utm.source ? utm.source : localStorage.utm_source,
                 utm_content = utm.content ? utm.content : localStorage.utm_content,
