@@ -2,8 +2,6 @@
 /.git/
 /**/Thumbs.db
 /**/*.DS_Store
-*.json
-*.JSON
 /app/video/*.*
 /app/app/*.*
 /app/img/src/
