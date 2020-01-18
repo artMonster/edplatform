@@ -45,6 +45,7 @@ $(window).on('load', function() {
 
 });
 
+
 function getCookie(c_name) {
     var i, x, y, ARRcookies = document.cookie.split(";");
     for (i = 0; i < ARRcookies.length; i++) {
@@ -61,7 +62,8 @@ function setCookie(c_name, value, exdays) {
     var exdate = new Date();
     exdate.setDate(exdate.getDate() + exdays);
     var c_value = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toUTCString());
-    document.cookie = c_name + "=" + c_value;
+    'cross-site-cookie=bar; SameSite=None; Secure';
+    document.cookie = '' + c_name + '=' + c_value + '; SameSite=None; Secure';
 }
 
 (function() {
@@ -169,10 +171,6 @@ function setCookie(c_name, value, exdays) {
         $('form').attr('data-id', $(this).data('btn'));
     });
 
-    function getURLParameter(name) {
-        return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || '';
-    }
-
     function validationsField(field) {
 
         var fieldValue = field[0].value;
@@ -254,6 +252,8 @@ function setCookie(c_name, value, exdays) {
         var form = $(this),
             formbtn = form.find('button[type="submit"]');
 
+        //var form = $(this).closest('form'), formbtn = $(this);
+
 
         if (validationsForm(form)) {
 
@@ -309,9 +309,6 @@ function setCookie(c_name, value, exdays) {
                     utm_term: utm_term,
                     page_url: page_url,
                     mailerlite: mailerlite,
-                },
-                beforeSend: function(e) {
-                    // console.log(e);
                 },
                 success: function(response) {
                     var response = JSON.parse(response);
@@ -379,6 +376,7 @@ function setCookie(c_name, value, exdays) {
                                         }
                                         pay();
                                     }
+                                    return;
                                 }
                             }
                         });
@@ -389,6 +387,9 @@ function setCookie(c_name, value, exdays) {
                     form.removeClass('send');
                 }
             }); /* ---- ajax ---- */
+        } else {
+            event.preventDefault();
+            return false;
         }
     }
 
