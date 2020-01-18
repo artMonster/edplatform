@@ -6,6 +6,4 @@
 *.JSON
 /app/video/*.*
 /app/app/*.*
-/app/libs/
-/app/sass/
 /app/img/src/

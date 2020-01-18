@@ -1,0 +1,183 @@
+@import "vars"
+@import "libs"
+@import "main.css"
+@import "media.css"
+
+body
+	opacity: 1
+	input, textarea
+		border: #666 1px solid
+		outline: none
+		&:focus:required:invalid
+			border-color: red
+		&:required:valid
+			border-color: green
+	&.load>section,
+	&.load>header,
+	&.load>footer
+		opacity: 1
+	&.load
+		background-color: #152c70
+		&:before
+			display: none
+			animation: none
+img
+	opacity: 0
+	&.lazyloaded 
+		transition: opacity .15s ease-out !important
+		opacity: 1
+.payroll
+	min-height: 70px
+video
+	width: 100%
+	height: 100%
+.mCSB_scrollTools .mCSB_buttonRight
+	background-image: url('../img/mCSB_buttons.webp') 
+
+html:not(.webp).mCSB_scrollTools .mCSB_buttonRight
+	background-image: url('../img/mCSB_buttons.png') !important
+
+.fancybox-image
+	opacity: 1
+.ACeBVhdPRSq.load
+	opacity: 1 !important
+	transition: opacity .3s ease-in !important
+.photo_gallery_sec, .iQBUYCfQOHz, .BQRbDVWHsjh, .qetXplEGDux
+	background-color: #fff
+.toploftical
+	border-radius: 10px
+	background-position: 20% 100%
+	background-repeat: no-repeat
+	background-size: cover
+.video .kappie
+	color: #fff
+#pol .kappie
+	z-index: 2222
+#pol h2, #pol h3
+	padding-bottom: 1rem
+	padding-top: 2rem
+#pol h3
+	font-size: 24px
+#pol p
+	font-size: 14px
+	color: $secondary
+.bg-light2
+	background-color: $light
+
+.modal-open .modal .container
+	z-index: 3333
+	position: relative
+.ed.logo
+	height: 39px
+.pr span span
+	color: #fff !important
+	width: 130px
+	font-size: 16px
+.m_h .pers
+	transform: translateX(-110%)
+	max-width: 150px
+.pers
+	position: relative
+	transform: translateX(-100%)
+	text-align: right
+	font-size: 14px
+	color: #fff !important
+	padding-right: 5px
+.iti__country-list
+	position: relative
+	z-index: 22
+.iti__country
+	color: $dark
+.error-message
+	display: none !important
+	position: absolute
+	left: 0
+	top: -65px
+	width: 100%
+	z-index: 22
+	.alert-heading.small
+		font-size: 14px
+	small
+		font-size: 14px
+.is-invalid
+	border: 1px solid red !important
+	box-shadow: 0 12px 15px rgba(red, .08) !important
+.count .act
+	text-align: center
+.count img
+	width: 20px
+	height: 20px
+	opacity: 1!important
+	position: relative
+	display: block
+	z-index: 222
+	margin-left: auto
+	margin-right: auto
+.ed-spiner
+	display: none
+form.send
+	&>*
+		display: none
+	.ed-spiner
+		text-align: center
+		padding: 5vh
+		display: block !important
+		width: 25vh
+		margin: 0 auto
+		svg
+			height: 15vh
+			animation: svgamin 5s ease-in-out infinite
+			circle
+				fill: transparent
+				animation: ellipseamin 5s ease-in-out infinite
+			path
+				fill: #152c70
+				animation: pathcoloramin 5s ease-out infinite
+@keyframes svgamin
+	0%
+		transform: rotate(-1080deg)
+	20%
+		transform: rotate(0deg)
+	30%
+		transform: rotate(0deg)
+	50%
+		transform: rotate(720deg)
+	80%
+		transform: rotate(2700deg)
+	92%
+		transform: rotate(2660deg)
+	100%
+		transform: rotate(2880deg)
+
+@keyframes pathcoloramin
+	0%
+		fill: #152c70
+	40%
+		fill: blue
+	50%
+		fill: #152c70
+	70%
+		fill: red 
+	100%
+		fill: #152c70
+
+@keyframes ellipseamin
+	0%
+		transform: translateX(-200%) translateY(200%)
+		fill: transparent
+	10%
+		transform: translateX(-50%) translateY(50%)
+		fill: transparent
+	20%
+		transform: translateX(-40%) translateY(40%)
+		fill: transparent
+	30%
+		transform: translateX(0%) translateY(0%)
+		fill: red
+	75%
+		transform: translateX(0%) translateY(0%)
+		fill: blue
+	100%
+		transform: translateX(-200%) translateY(200%)
+		fill: #fff
+		
