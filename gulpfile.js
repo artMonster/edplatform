@@ -107,7 +107,7 @@ gulp.task('watch', function() {
     gulp.watch('app/header.sass', gulp.parallel('headersass'));
     gulp.watch('app/' + syntax + '/**/*.' + syntax + '', gulp.parallel('styles'));
     gulp.watch(['libs/**/*.js', 'app/js/common.js'], gulp.parallel('scripts'));
-    gulp.watch('app/*.*', gulp.parallel('code'));
+    gulp.watch('app/**/*.*', gulp.parallel('code'));
     //gulp.watch('app/*.*', gulp.parallel('buildhtmlwatch'));
     //gulp.watch('app/img/src/**/*', gulp.parallel('webpImages'));
 });
